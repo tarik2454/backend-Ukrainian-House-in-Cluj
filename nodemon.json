@@ -1,0 +1,7 @@
+{
+  "execMap": {
+    "ts": "ts-node ./app.ts"
+  },
+  "watch": ["*.ts"],
+  "ext": "ts,json"
+}
