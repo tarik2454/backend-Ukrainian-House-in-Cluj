@@ -1,62 +1,201 @@
 [
   {
-    "id": "AeHIrLTr6JkxGE6SN-0Rw",
-    "name": "Allen Raymond",
-    "email": "nulla.ante@vestibul.co.uk",
-    "phone": "(992) 914-3792"
+    "id": "1",
+    "title": "Contemporary Art Festival",
+    "img": "https://via.placeholder.com/150x100?text=Art+Festival",
+    "description": "Join us for a contemporary art festival showcasing the works of the country's best artists.",
+    "tags": [
+      "art"
+    ],
+    "date": "02/01/2024"
   },
   {
-    "id": "qdggE76Jtbfd9eWJHrssH",
-    "name": "Chaim Lewis",
-    "email": "dui.in@egetlacus.ca",
-    "phone": "(294) 840-6685"
+    "id": "2",
+    "title": "Open-Air Music Concert",
+    "img": "https://via.placeholder.com/150x100?text=Open+Air+Concert",
+    "description": "A concert featuring renowned musicians in the open air. Come and enjoy music and fresh air!",
+    "tags": [
+      "workshop"
+    ],
+    "date": "02/02/2024"
   },
   {
-    "id": "drsAJ4SHPYqZeG-83QTVW",
-    "name": "Kennedy Lane",
-    "email": "mattis.Cras@nonenimMauris.net",
-    "phone": "(542) 451-7038"
+    "id": "3",
+    "title": "City Bike Ride",
+    "img": "https://via.placeholder.com/150x100?text=City+Bike+Race",
+    "description": "Join our city bike ride! Spend an active day with like-minded people.",
+    "tags": [
+      "painting"
+    ],
+    "date": "02/03/2024"
   },
   {
-    "id": "vza2RIzNGIwutCVCs4mCL",
-    "name": "Wylie Pope",
-    "email": "est@utquamvel.net",
-    "phone": "(692) 802-2949"
+    "id": "4",
+    "title": "Cooking Masterclass",
+    "img": "https://via.placeholder.com/150x100?text=Cooking+Masterclass",
+    "description": "Learn to cook delicious dishes from a professional chef. Don’t miss the chance to improve your culinary skills!",
+    "tags": [
+      "education"
+    ],
+    "date": "02/04/2024"
   },
   {
-    "id": "05olLMgyVQdWRwgKfg5J6",
-    "name": "Cyrus Jackson",
-    "email": "nibh@semsempererat.com",
-    "phone": "(501) 472-5218"
+    "id": "5",
+    "title": "Retro Car Show",
+    "img": "https://via.placeholder.com/150x100?text=Retro+Car+Show",
+    "description": "A retro car exhibition for all fans of vintage automobiles. Experience the spirit of past eras!",
+    "tags": [
+      "sports"
+    ],
+    "date": "02/05/2024"
   },
   {
-    "id": "1DEXoP8AuCGYc1YgoQ6hw",
-    "name": "Abbot Franks",
-    "email": "scelerisque@magnis.org",
-    "phone": "(186) 568-3720"
+    "id": "6",
+    "title": "Theater Performance",
+    "img": "https://via.placeholder.com/150x100?text=Theater+Play",
+    "description": "A new production of a famous play performed by leading theater actors. Don’t miss out!",
+    "tags": [
+      "food"
+    ],
+    "date": "02/06/2024"
   },
   {
-    "id": "Z5sbDlS7pCzNsnAHLtDJd",
-    "name": "Reuben Henry",
-    "email": "pharetra.ut@dictum.co.uk",
-    "phone": "(715) 598-5792"
+    "id": "7",
+    "title": "Photography Workshop",
+    "img": "https://via.placeholder.com/150x100?text=Photography+Workshop",
+    "description": "Learn the secrets of professional photography at our workshop. Bring your camera!",
+    "tags": [
+      "lawyer"
+    ],
+    "date": "02/07/2024"
   },
   {
-    "id": "C9sjBfCo4UJCWjzBnOtxl",
-    "name": "Simon Morton",
-    "email": "dui.Fusce.diam@Donec.com",
-    "phone": "(233) 738-2360"
+    "id": "8",
+    "title": "Charity Fair",
+    "img": "https://via.placeholder.com/150x100?text=Charity+Fair",
+    "description": "A charity fair where you can purchase interesting items and help those in need.",
+    "tags": [
+      "language"
+    ],
+    "date": "02/08/2024"
   },
   {
-    "id": "e6ywwRe4jcqxXfCZOj_1e",
-    "name": "Thomas Lucas",
-    "email": "nec@Nulla.com",
-    "phone": "(704) 398-7993"
+    "id": "9",
+    "title": "Author Meeting",
+    "img": "https://via.placeholder.com/150x100?text=Author+Meeting",
+    "description": "Meet a famous author who will talk about their new book and sign your copies.",
+    "tags": [
+      "psychology"
+    ],
+    "date": "02/09/2024"
   },
   {
-    "id": "rsKkOQUi80UsgVPCcLZZW",
-    "name": "Alec Howard",
-    "email": "Donec.elementum@scelerisquescelerisquedui.net",
-    "phone": "(748) 206-2688"
+    "id": "10",
+    "title": "Yoga Workshop",
+    "img": "https://via.placeholder.com/150x100?text=Yoga+Workshop",
+    "description": "Calm your mind and body at our yoga workshop. Suitable for all skill levels.",
+    "tags": [
+      "other"
+    ],
+    "date": "02/10/2024"
+  },
+  {
+    "id": "11",
+    "title": "City Tour",
+    "img": "https://via.placeholder.com/150x100?text=City+Tour",
+    "description": "Learn more about the history of our city on an exciting tour with a professional guide.",
+    "tags": [
+      "exhibition"
+    ],
+    "date": "02/11/2024"
+  },
+  {
+    "id": "12",
+    "title": "Open-Air Cinema",
+    "img": "https://via.placeholder.com/150x100?text=Open+Air+Cinema",
+    "description": "Enjoy watching movies under the stars. Bring blankets and friends!",
+    "tags": [
+      "art"
+    ],
+    "date": "02/12/2024"
+  },
+  {
+    "id": "13",
+    "title": "Painting Workshop",
+    "img": "https://via.placeholder.com/150x100?text=Painting+Workshop",
+    "description": "Unlock your artistic potential at our painting workshop for all skill levels.",
+    "tags": [
+      "workshop"
+    ],
+    "date": "02/13/2024"
+  },
+  {
+    "id": "14",
+    "title": "Charity Run",
+    "img": "https://via.placeholder.com/150x100?text=Charity+Run",
+    "description": "Participate in a charity run and support a good cause. Health and charity in one event!",
+    "tags": [
+      "painting"
+    ],
+    "date": "02/14/2024"
+  },
+  {
+    "id": "15",
+    "title": "Tech Conference",
+    "img": "https://via.placeholder.com/150x100?text=Tech+Conference",
+    "description": "Attend a conference on the latest technologies. Learn about trends from leading experts.",
+    "tags": [
+      "education"
+    ],
+    "date": "02/15/2024"
+  },
+  {
+    "id": "16",
+    "title": "Dance Workshop",
+    "img": "https://via.placeholder.com/150x100?text=Dance+Workshop",
+    "description": "Join us for a dance workshop. Learn new moves and have fun!",
+    "tags": [
+      "sports"
+    ],
+    "date": "02/16/2024"
+  },
+  {
+    "id": "17",
+    "title": "Food Festival",
+    "img": "https://via.placeholder.com/150x100?text=Food+Festival",
+    "description": "Enjoy a variety of dishes at our food festival. Discover new flavors!",
+    "tags": [
+      "food"
+    ],
+    "date": "02/17/2024"
+  },
+  {
+    "id": "18",
+    "title": "Book Fair",
+    "img": "https://via.placeholder.com/150x100?text=Book+Fair",
+    "description": "Visit the book fair and find your next favorite read. Discounts and promotions for all visitors!",
+    "tags": [
+      "lawyer"
+    ],
+    "date": "02/18/2024"
+  },
+  {
+    "id": "19",
+    "title": "Gardening Workshop",
+    "img": "https://via.placeholder.com/150x100?text=Gardening+Workshop",
+    "description": "Learn the basics of gardening at our workshop. Get tips from experienced gardeners.",
+    "tags": [
+      "language"
+    ],
+    "date": "02/19/2024"
+  },
+  {
+    "id": "s25XLJPfsh6tkOe8mH4cZ",
+    "title": "New Event",
+    "description": "Sample description",
+    "tags": [
+      "shop"
+    ],
+    "date": "08/12/2024"
   }
 ]

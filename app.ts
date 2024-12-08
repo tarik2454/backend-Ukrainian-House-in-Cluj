@@ -1,8 +1,11 @@
 import express, { Request, Response, NextFunction } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import eventsRouter from './routes/eventsRouter.js';
+
+dotenv.config();
 
 interface HttpError extends Error {
   status: number;
@@ -15,8 +18,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/contacts', eventsRouter);
-
-console.log(eventsRouter);
 
 app.use((_: Request, res: Response) => {
   res.status(404).json({ message: 'Route not found' });
