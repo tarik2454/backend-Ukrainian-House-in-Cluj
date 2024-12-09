@@ -7,25 +7,53 @@ import {
   updateEvent,
 } from '../controllers/eventsController.js';
 
-const invokeAction = async ({ id }: { id?: string }) => {
-  // const allEvents = await getAllEvents();
-  // return console.log(allEvents);
-  if (id) {
-    const oneEvent = await getOneEvent({ id });
-    console.log('One Event:', oneEvent);
-    return oneEvent;
-  }
+import { CreateEventData } from '../types/event';
 
-  const newEvent = await createEvent({
-    title: 'New Event',
-    description: 'Sample description',
-    tags: ['shop'],
-    date: '08/12/2024',
-  });
-  return console.log(newEvent);
+interface InvokeActionData extends CreateEventData {
+  action: 'list' | 'getById' | 'add' | 'updateById';
+  id: string;
+}
+
+const invokeAction = async ({
+  action,
+  id,
+  title,
+  description,
+  tags,
+  date,
+}: InvokeActionData) => {
+  switch (action) {
+    case 'list':
+      const allEvents = await getAllEvents();
+      return console.log(allEvents);
+    case 'getById':
+      const oneEvent = await getOneEvent({ id });
+      return console.log(oneEvent);
+    case 'add':
+      const newEvent = await createEvent({
+        title: 'New Event',
+        description: 'Sample description',
+        tags: ['shop'],
+        date: '08/12/2024',
+      });
+      return console.log(newEvent);
+    case 'updateById':
+      const updatedEvent = await updateEvent({
+        id,
+        data: { title, description, tags, date },
+      });
+      return console.log(updatedEvent);
+  }
 };
 
-invokeAction({});
+invokeAction({
+  action: 'updateById',
+  id: 's25XLJPfsh6tkOe8mH4cZ',
+  title: 'New',
+  description: 'Sample',
+  tags: ['magento'],
+  date: '09/12/2024',
+});
 
 const eventsRouter = express.Router();
 

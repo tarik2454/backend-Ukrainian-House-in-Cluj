@@ -5,10 +5,13 @@ import path from 'path';
 
 import { CreateEventData } from '../types/event';
 
-const filePath = path.resolve('db', 'events.json');
+const eventsPath = path.resolve('db', 'events.json');
+
+const updateEvents = (events: CreateEventData[]) =>
+  fs.writeFile(eventsPath, JSON.stringify(events, null, 2));
 
 export const getAllEvents = async () => {
-  const data = await fs.readFile(filePath, 'utf8');
+  const data = await fs.readFile(eventsPath, 'utf8');
   return JSON.parse(data);
 };
 
@@ -29,10 +32,23 @@ export const createEvent = async (data: CreateEventData) => {
     ...data,
   };
   events.push(newEvent);
-  await fs.writeFile(filePath, JSON.stringify(events, null, 2));
+  await updateEvents(events);
   return newEvent;
 };
 
-export const updateEvent = (req: Request, res: Response) => {
-  // ваш код
+export const updateEvent = async ({
+  id,
+  data,
+}: {
+  id: string;
+  data: CreateEventData;
+}) => {
+  const events = await getAllEvents();
+  const index = events.findIndex((event: { id: string }) => event.id === id);
+  if (index === -1) {
+    return null;
+  }
+  events[index] = { id, ...data };
+  await updateEvents(events);
+  return events[index];
 };
