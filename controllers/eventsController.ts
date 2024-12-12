@@ -21,10 +21,6 @@ export const getOneEvent = async ({ id }: { id: string }) => {
   return result || null;
 };
 
-export const deleteEvent = (req: Request, res: Response) => {
-  // ваш код
-};
-
 export const createEvent = async (data: CreateEventData) => {
   const events = await getAllEvents();
   const newEvent = {
@@ -51,4 +47,15 @@ export const updateEvent = async ({
   events[index] = { id, ...data };
   await updateEvents(events);
   return events[index];
+};
+
+export const deleteEvent = async (id: string) => {
+  const events = await getAllEvents();
+  const index = events.findIndex((event: { id: string }) => event.id === id);
+  if (index === -1) {
+    return null;
+  }
+  const [result] = events.splice(index, 1);
+  await updateEvents(events);
+  return result;
 };

@@ -10,7 +10,7 @@ import {
 import { CreateEventData } from '../types/event';
 
 interface InvokeActionData extends CreateEventData {
-  action: 'list' | 'getById' | 'add' | 'updateById';
+  action: 'list' | 'getById' | 'add' | 'updateById' | 'deleteById';
   id: string;
 }
 
@@ -43,16 +43,16 @@ const invokeAction = async ({
         data: { title, description, tags, date },
       });
       return console.log(updatedEvent);
+    case 'deleteById':
+      const deletedEvent = await deleteEvent(id);
+      return console.log(deletedEvent);
+    default:
   }
 };
 
 invokeAction({
-  action: 'updateById',
+  action: 'deleteById',
   id: 's25XLJPfsh6tkOe8mH4cZ',
-  title: 'New',
-  description: 'Sample',
-  tags: ['magento'],
-  date: '09/12/2024',
 });
 
 const eventsRouter = express.Router();

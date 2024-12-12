@@ -1,7 +1,7 @@
 export interface CreateEventData {
-  title: string;
+  title?: string;
   img?: string;
-  description: string;
-  tags: string[];
-  date: string;
+  description?: string;
+  tags?: string[];
+  date?: string;
 }

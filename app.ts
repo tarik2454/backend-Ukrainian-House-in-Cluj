@@ -13,6 +13,8 @@ interface HttpError extends Error {
 
 const app = express();
 
+console.log(app);
+
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
@@ -27,6 +29,8 @@ app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
   const { status = 500, message = 'Server error' } = err;
   res.status(status).json({ message });
 });
+
+// console.log(process.argv);
 
 app.listen(3001, () => {
   console.log('Server is running. Use our API on port: 3001');
