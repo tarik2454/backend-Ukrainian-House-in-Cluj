@@ -1,11 +1,5 @@
 import express from 'express';
-import {
-  getAllEvents,
-  // getOneEvent,
-  // deleteEvent,
-  // createEvent,
-  // updateEvent,
-} from '../controllers/eventsController.js';
+import { getAll, getById } from '../controllers/eventsController.ts';
 
 // import { CreateEventData } from '../types/event';
 
@@ -57,9 +51,9 @@ import {
 
 const eventsRouter = express.Router();
 
-eventsRouter.get('/', getAllEvents);
+eventsRouter.get('/', getAll);
 
-// eventsRouter.get('/:id', getOneEvent);
+eventsRouter.get('/:id', getById);
 
 // eventsRouter.post('/', createEvent);
 

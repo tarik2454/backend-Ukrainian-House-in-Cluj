@@ -1,30 +1,40 @@
 import { Request, Response } from 'express';
-import fs from 'fs/promises';
-import { nanoid } from 'nanoid';
-import path from 'path';
+import { getAllEvents, getOneEvent } from '../db/index.js';
 
-import { CreateEventData } from '../types/event';
+interface RequestWithParams extends Request {
+  params: {
+    id: string;
+  };
+}
 
-const eventsPath = path.resolve('db', 'events.json');
-
-const updateEvents = (events: CreateEventData[]) =>
-  fs.writeFile(eventsPath, JSON.stringify(events, null, 2));
-
-export const getAllEvents = async (req: Request, res: Response) => {
+export const getAll = async (req: Request, res: Response): Promise<void> => {
   try {
-    const data = await fs.readFile(eventsPath, 'utf8');
-    const events = JSON.parse(data);
-    res.status(200).json(events);
+    const result = await getAllEvents();
+    res.json(result);
   } catch (error) {
-    res.status(500).json({ message: 'Failed to retrieve events', error });
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unknown error occurred';
+    res.status(500).json({ message: errorMessage });
   }
 };
 
-// export const getOneEvent = async ({ id }: { id: string }) => {
-//   const events = await getAllEvents();
-//   const result = events.find((event: { id: string }) => event.id === id);
-//   return result || null;
-// };
+export const getById = async (
+  req: RequestWithParams,
+  res: Response
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const result = await getOneEvent(id);
+    if (!result) {
+      res.status(404).json({ message: `Event with id=${id} not found` });
+    }
+    res.json(result);
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unknown error occurred';
+    res.status(500).json({ message: errorMessage });
+  }
+};
 
 // export const createEvent = async (req: Request, res: Response) => {
 //   try {
