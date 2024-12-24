@@ -28,22 +28,15 @@ export const getOneEvent = async (id: string): Promise<Event | null> => {
 };
 
 // Функция для создания нового события
-export const createEvent = async (
-  req: { body: Omit<Event, 'id'> },
-  res: { status: Function, json: Function }
-): Promise<void> => {
-  try {
-    const events = await getAllEvents();
-    const newEvent: Event = {
-      id: nanoid(),
-      ...req.body,
-    };
-    events.push(newEvent);
-    await updateEvents(events);
-    res.status(201).json(newEvent);
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to create event', error });
-  }
+export const createEvent = async (body: Partial<Event>): Promise<Event> => {
+  const events = await getAllEvents();
+  const newEvent: Event = {
+    id: nanoid(),
+    ...body,
+  };
+  events.push(newEvent);
+  await updateEvents(events);
+  return newEvent;
 };
 
 // Функция для обновления события
@@ -51,8 +44,8 @@ export const updateEvent = async ({
   id,
   data,
 }: {
-  id: string,
-  data: Omit<Event, 'id'>,
+  id: string;
+  data: Omit<Event, 'id'>;
 }): Promise<Event | null> => {
   const events = await getAllEvents();
   const index = events.findIndex(event => event.id === id);

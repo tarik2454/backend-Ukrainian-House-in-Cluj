@@ -1,5 +1,8 @@
-import { Request, Response } from 'express';
-import { getAllEvents, getOneEvent } from '../db/index.js';
+import { NextFunction, Request, Response } from 'express';
+import { getAllEvents, getOneEvent, createEvent } from '../db/index.js';
+import HttpError from '../helpers/HttpError.js';
+import { nanoid } from 'nanoid';
+import { createEventSchema } from '../schemas/eventSchemas.js';
 
 interface RequestWithParams extends Request {
   params: {
@@ -7,49 +10,59 @@ interface RequestWithParams extends Request {
   };
 }
 
-export const getAll = async (req: Request, res: Response): Promise<void> => {
+export const getAll = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
   try {
     const result = await getAllEvents();
     res.json(result);
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : 'Unknown error occurred';
-    res.status(500).json({ message: errorMessage });
+    next(error);
+    //   const errorMessage =
+    //     error instanceof Error ? error.message : 'Unknown error occurred';
+    //   res.status(500).json({ message: errorMessage });
   }
 };
 
 export const getById = async (
   req: RequestWithParams,
-  res: Response
+  res: Response,
+  next: NextFunction
 ): Promise<void> => {
   try {
     const { id } = req.params;
     const result = await getOneEvent(id);
     if (!result) {
-      res.status(404).json({ message: `Event with id=${id} not found` });
+      throw HttpError(404, `Event with id=${id} not found`);
     }
     res.json(result);
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : 'Unknown error occurred';
-    res.status(500).json({ message: errorMessage });
+    next(error);
+    // if (error instanceof Error && 'status' in error) {
+    //   const { status = 500, message } = error as HttpError;
+    //   res.status(status).json({ message });
+    // } else {
+    //   const errorMessage =
+    //     error instanceof Error ? error.message : 'Unknown error occurred';
+    //   res.status(500).json({ message: errorMessage });
+    // }
   }
 };
 
-// export const createEvent = async (req: Request, res: Response) => {
-//   try {
-//     const events = await getAllEvents();
-//     const newEvent = {
-//       id: nanoid(),
-//       ...req.body,
-//     };
-//     events.push(newEvent);
-//     await updateEvents(events);
-//     res.status(201).json(newEvent);
-//   } catch (error) {
-//     res.status(500).json({ message: 'Failed to create event', error });
-//   }
-// };
+export const add = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { error } = createEventSchema.validate(req.body);
+    if (error) {
+      throw HttpError(400, error.message);
+    }
+    const result = await createEvent(req.body);
+    res.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const updateEvent = async ({
 //   id,

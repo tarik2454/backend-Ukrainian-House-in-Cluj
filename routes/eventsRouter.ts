@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAll, getById } from '../controllers/eventsController.ts';
+import { add, getAll, getById } from '../controllers/eventsController.ts';
 
 // import { CreateEventData } from '../types/event';
 
@@ -55,7 +55,7 @@ eventsRouter.get('/', getAll);
 
 eventsRouter.get('/:id', getById);
 
-// eventsRouter.post('/', createEvent);
+eventsRouter.post('/', add);
 
 // eventsRouter.put('/:id', updateEvent);
 
