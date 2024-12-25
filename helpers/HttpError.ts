@@ -1,14 +1,11 @@
-// Интерфейс для объекта с кодами состояния и сообщениями
 interface MessageList {
   [key: number]: string;
 }
 
-// Интерфейс для ошибки с кодом состояния
 interface HttpError extends Error {
   status: number;
 }
 
-// Функция для создания ошибки с соответствующим статусом
 const HttpError = (
   status: keyof MessageList,
   message = messageList[status]
@@ -18,7 +15,6 @@ const HttpError = (
   return error;
 };
 
-// Объект с кодами состояния и сообщениями
 const messageList: MessageList = {
   400: 'Bad Request',
   401: 'Unauthorized',

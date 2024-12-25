@@ -1,8 +1,18 @@
 import { NextFunction, Request, Response } from 'express';
-import { getAllEvents, getOneEvent, createEvent } from '../db/index.js';
+
 import HttpError from '../helpers/HttpError.js';
-import { nanoid } from 'nanoid';
-import { createEventSchema } from '../schemas/eventSchemas.js';
+import {
+  createEventSchema,
+  updateEventSchema,
+} from '../schemas/eventSchemas.js';
+
+import {
+  getAllEvents,
+  getOneEvent,
+  createEvent,
+  updateEvent,
+  deleteEvent,
+} from '../db/index.js';
 
 interface RequestWithParams extends Request {
   params: {
@@ -64,30 +74,41 @@ export const add = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-// export const updateEvent = async ({
-//   id,
-//   data,
-// }: {
-//   id: string;
-//   data: CreateEventData;
-// }) => {
-//   const events = await getAllEvents();
-//   const index = events.findIndex((event: { id: string }) => event.id === id);
-//   if (index === -1) {
-//     return null;
-//   }
-//   events[index] = { id, ...data };
-//   await updateEvents(events);
-//   return events[index];
-// };
+export const updateById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { error } = updateEventSchema.validate(req.body);
+    if (error) {
+      throw HttpError(400, error.message);
+    }
+    const { id } = req.params;
+    const result = await updateEvent({ id, data: req.body });
+    if (!result) {
+      throw HttpError(404, `Event with id=${id} not found`);
+    }
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
-// export const deleteEvent = async (id: string) => {
-//   const events = await getAllEvents();
-//   const index = events.findIndex((event: { id: string }) => event.id === id);
-//   if (index === -1) {
-//     return null;
-//   }
-//   const [result] = events.splice(index, 1);
-//   await updateEvents(events);
-//   return result;
-// };
+export const deleteById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    const result = await deleteEvent(id);
+    if (!result) {
+      throw HttpError(404, `Event with id=${id} not found`);
+    }
+    // res.status(204).send(); // response.body non send;
+    res.json({ message: 'Delete successfully' });
+  } catch (error) {
+    next(error);
+  }
+};

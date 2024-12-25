@@ -52,7 +52,7 @@ export const updateEvent = async ({
   if (index === -1) {
     return null;
   }
-  events[index] = { id, ...data };
+  events[index] = { ...events[index], ...data };
   await updateEvents(events);
   return events[index];
 };
