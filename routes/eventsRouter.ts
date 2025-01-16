@@ -1,22 +1,28 @@
 import express from 'express';
+
+import eventsController from '../controllers/eventsController.ts';
+
+import validateBody from '../decorators/validateBody.ts';
+
 import {
-  add,
-  getAll,
-  getById,
-  updateById,
-  deleteById,
-} from '../controllers/eventsController.ts';
+  createEventSchema,
+  updateEventSchema,
+} from '../schemas/eventSchemas.ts';
 
 const eventsRouter = express.Router();
 
-eventsRouter.get('/', getAll);
+eventsRouter.get('/', eventsController.getAll);
 
-eventsRouter.get('/:id', getById);
+eventsRouter.get('/:id', eventsController.getById);
 
-eventsRouter.post('/', add);
+eventsRouter.post('/', validateBody(createEventSchema), eventsController.add);
 
-eventsRouter.put('/:id', updateById);
+eventsRouter.put(
+  '/:id',
+  validateBody(updateEventSchema),
+  eventsController.updateById
+);
 
-eventsRouter.delete('/:id', deleteById);
+eventsRouter.delete('/:id', eventsController.deleteById);
 
 export default eventsRouter;
