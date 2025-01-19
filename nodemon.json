@@ -1,7 +1,9 @@
 {
   "execMap": {
-    "ts": "ts-node ./app.ts"
+    "ts": "node --loader ts-node/esm"
   },
-  "watch": ["*.ts"],
-  "ext": "ts,json"
+  "watch": ["src/**/*.ts"],
+  "ext": "ts,json",
+  "ignore": ["dist/*", "node_modules/*"],
+  "restartable": "rs"
 }

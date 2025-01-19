@@ -4,9 +4,12 @@
   "description": "",
   "main": "server.ts",
   "type": "module",
+  "engines": {
+    "node": ">=19.0.0"
+  },
   "scripts": {
     "start": "node --loader ts-node/esm ./server.ts",
-    "dev": "nodemon --exec node --loader ts-node/esm ./server.ts"
+    "dev": "concurrently \"tsc --watch\" \"nodemon dist/server.js\""
   },
   "dependencies": {
     "cors": "^2.8.5",

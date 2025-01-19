@@ -1,3 +1,5 @@
+// types/event.ts
+
 export interface CreateEventData {
   title?: string;
   img?: string;
@@ -6,8 +8,6 @@ export interface CreateEventData {
   date?: string;
 }
 
-import eventsData from '../db/events.json';
-
 export interface EventItem {
   id: string;
   title: string;
@@ -15,6 +15,11 @@ export interface EventItem {
   description: string;
   tags: string[];
   date: string;
+  publicationDate: string;
+  eventDate: {
+    date: string;
+    time?: string;
+    location: string;
+  };
+  registration: boolean;
 }
-
-export const db: EventItem[] = eventsData;
