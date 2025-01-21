@@ -1,5 +1,3 @@
-// types/event.ts
-
 export interface CreateEventData {
   title?: string;
   img?: string;

@@ -1,13 +1,10 @@
 import express from 'express';
 
-import eventsController from '../controllers/eventsController.ts';
+import eventsController from '../controllers/eventsController';
 
-import validateBody from '../decorators/validateBody.ts';
+import validateBody from '../decorators/validateBody';
 
-import {
-  createEventSchema,
-  updateEventSchema,
-} from '../schemas/eventSchemas.ts';
+import { createEventSchema, updateEventSchema } from '../schemas/eventSchemas';
 
 const eventsRouter = express.Router();
 

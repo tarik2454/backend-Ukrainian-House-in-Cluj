@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import app from './app.ts';
+import app from './app';
 
 const DB_HOST =
   'mongodb+srv://tarik2454:4tNelyySmiuNs9aS@cluster0.pz8jo.mongodb.net/backend-Ukrainian-House-in-Cluj?retryWrites=true&w=majority&appName=Cluster0';

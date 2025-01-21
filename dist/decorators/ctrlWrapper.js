@@ -1,4 +1,7 @@
-export default function ctrlWrapper(ctrl) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = ctrlWrapper;
+function ctrlWrapper(ctrl) {
     return async (req, res, next) => {
         try {
             await ctrl(req, res, next);
@@ -8,3 +11,4 @@ export default function ctrlWrapper(ctrl) {
         }
     };
 }
+//# sourceMappingURL=ctrlWrapper.js.map

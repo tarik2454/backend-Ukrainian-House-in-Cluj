@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "target": "ES2022",
-    "moduleResolution": "bundler",
-    "strict": true,
+    "module": "CommonJS",
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "target": "ES2019",
+    "sourceMap": true,
+    "strict": true,
     "outDir": "./dist",
-    "allowImportingTsExtensions": true,
-    "noEmit": true
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
-  "include": ["./**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

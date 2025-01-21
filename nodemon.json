@@ -1,9 +1,6 @@
 {
-  "execMap": {
-    "ts": "node --loader ts-node/esm"
-  },
-  "watch": ["src/**/*.ts"],
+  "watch": ["**/*.ts"],
   "ext": "ts,json",
   "ignore": ["dist/*", "node_modules/*"],
-  "restartable": "rs"
+  "exec": "ts-node -r tsconfig-paths/register server.ts"
 }

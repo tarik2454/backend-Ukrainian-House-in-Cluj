@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-import eventsRouter from './routes/eventsRouter.js';
+import eventsRouter from './routes/eventsRouter';
 
 dotenv.config();
 

@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 
-import HttpError from '../helpers/HttpError.ts';
+import HttpError from '../helpers/HttpError';
 
-import ctrlWrapper from '../decorators/ctrlWrapper.ts';
+import ctrlWrapper from '../decorators/ctrlWrapper';
 
 import {
   getAllEvents,
@@ -10,7 +10,7 @@ import {
   createEvent,
   updateEvent,
   deleteEvent,
-} from '../db/index.js';
+} from '../db/index';
 
 interface RequestWithParams extends Request {
   params: {

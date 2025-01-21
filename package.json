@@ -2,14 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.ts",
-  "type": "module",
+  "main": "server.js",
   "engines": {
     "node": ">=19.0.0"
   },
   "scripts": {
-    "start": "node --loader ts-node/esm ./server.ts",
-    "dev": "concurrently \"tsc --watch\" \"nodemon dist/server.js\""
+    "start": "node -r tsconfig-paths/register ./dist/server.js",
+    "dev": "nodemon",
+    "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -18,14 +18,16 @@
     "joi": "^17.11.0",
     "mongoose": "^8.9.5",
     "morgan": "^1.10.0",
-    "nanoid": "^5.0.9"
+    "nanoid": "^3.3.8"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
-    "nodemon": "^3.1.7",
+    "@types/node": "^22.10.7",
+    "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.3"
   }
 }

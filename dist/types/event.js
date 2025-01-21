@@ -1,2 +1,3 @@
-import eventsData from '../db/events.json';
-export const db = eventsData;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=event.js.map

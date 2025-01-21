@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const HttpError = (status, message = messageList[status]) => {
     const error = new Error(message);
     error.status = status;
@@ -10,4 +12,5 @@ const messageList = {
     404: 'Not Found',
     409: 'Conflict',
 };
-export default HttpError;
+exports.default = HttpError;
+//# sourceMappingURL=HttpError.js.map
