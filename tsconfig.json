@@ -1,16 +1,24 @@
 {
   "compilerOptions": {
+    "allowJs": false,
     "module": "CommonJS",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "target": "ES2019",
     "sourceMap": true,
-    "strict": true,
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
       "@/*": ["*"]
-    }
+    },
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "isolatedModules": true,
+    "lib": ["ES2021"],
+    "skipLibCheck": true,
+    "strict": true
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules", "dist"]
