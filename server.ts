@@ -1,12 +1,19 @@
 import mongoose from 'mongoose';
 
+import dotenv from 'dotenv';
+
 import app from './app';
 
-const DB_HOST =
-  'mongodb+srv://tarik2454:4tNelyySmiuNs9aS@cluster0.pz8jo.mongodb.net/backend-Ukrainian-House-in-Cluj?retryWrites=true&w=majority&appName=Cluster0';
+dotenv.config();
+
+const dbHost = process.env.DB_HOST;
+
+if (!dbHost) {
+  throw new Error('Environment variable DB_HOST is not defined');
+}
 
 mongoose
-  .connect(DB_HOST)
+  .connect(dbHost)
   .then(() => {
     app.listen(3001, () => {
       console.log('Server is running. Use our API on port: 3001');
