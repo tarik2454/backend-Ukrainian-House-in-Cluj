@@ -10,16 +10,16 @@ const eventsRouter = express.Router();
 
 eventsRouter.get('/', eventsController.getAll);
 
-eventsRouter.get('/:id', eventsController.getById);
+// eventsRouter.get('/:id', eventsController.getById);
 
 eventsRouter.post('/', validateBody(createEventSchema), eventsController.add);
 
-eventsRouter.put(
-  '/:id',
-  validateBody(updateEventSchema),
-  eventsController.updateById
-);
+// eventsRouter.put(
+//   '/:id',
+//   validateBody(updateEventSchema),
+//   eventsController.updateById
+// );
 
-eventsRouter.delete('/:id', eventsController.deleteById);
+// eventsRouter.delete('/:id', eventsController.deleteById);
 
 export default eventsRouter;

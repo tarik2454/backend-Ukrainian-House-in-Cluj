@@ -1,10 +1,6 @@
 import mongoose from 'mongoose';
 
-import dotenv from 'dotenv';
-
 import app from './app';
-
-dotenv.config();
 
 const dbHost = process.env.DB_HOST;
 
@@ -15,7 +11,7 @@ if (!dbHost) {
 mongoose
   .connect(dbHost)
   .then(() => {
-    app.listen(3001, () => {
+    app.listen(process.env.PORT, () => {
       console.log('Server is running. Use our API on port: 3001');
     });
   })

@@ -1,11 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 
 import eventsRouter from './routes/eventsRouter';
-
-dotenv.config();
 
 interface HttpError extends Error {
   status: number;
