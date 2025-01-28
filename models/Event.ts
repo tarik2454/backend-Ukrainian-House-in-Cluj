@@ -1,8 +1,9 @@
 import { Schema, model } from 'mongoose';
 
-import { handleSaveError } from './hooks';
+import { handleSaveError, preUpdate } from './hooks';
 
 import { tags } from '@/constants/tags';
+
 import { publicationDateRegex } from '@/constants/regex';
 
 const eventSchema = new Schema(
@@ -28,10 +29,15 @@ const eventSchema = new Schema(
     },
     favorites: { type: Boolean, default: false },
   },
+
   { versionKey: false, timestamps: true }
 );
 
 eventSchema.post('save', handleSaveError);
+
+eventSchema.pre('findOneAndUpdate', preUpdate);
+
+eventSchema.post('findOneAndUpdate', handleSaveError);
 
 const Event = model('event', eventSchema);
 

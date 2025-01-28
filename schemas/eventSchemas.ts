@@ -11,9 +11,13 @@ export const createEventSchema = Joi.object({
       'any.required': `"date" must be exist`,
       'string.pattern.base': `"date" must match the format DD-MM-YYYY`,
     }),
-  title: Joi.string().required(),
+  title: Joi.string()
+    .required()
+    .messages({ 'any.required': `"title" must be exist` }),
   img: Joi.string(),
-  description: Joi.string().required(),
+  description: Joi.string()
+    .required()
+    .messages({ 'any.required': `"description" must be exist` }),
   eventDate: Joi.object({
     date: Joi.string(),
     time: Joi.string(),
@@ -31,7 +35,7 @@ export const createEventSchema = Joi.object({
 });
 
 export const updateEventSchema = Joi.object({
-  publicationDate: Joi.date(),
+  publicationDate: Joi.string(),
   title: Joi.string(),
   img: Joi.string(),
   description: Joi.string(),

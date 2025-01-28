@@ -14,21 +14,22 @@ interface RequestWithParams extends Request {
 
 const getAll = async (req: Request, res: Response): Promise<void> => {
   // const result = await getAllEvents();
-  const result = await Event.find();
+  const result = await Event.findById({}, '-createdAt -updatedAt');
   res.json(result);
 };
 
-// const getById = async (
-//   req: RequestWithParams,
-//   res: Response
-// ): Promise<void> => {
-//   const { id } = req.params;
-//   const result = await getOneEvent(id);
-//   if (!result) {
-//     throw HttpError(404, `Event with id=${id} not found`);
-//   }
-//   res.json(result);
-// };
+const getById = async (
+  req: RequestWithParams,
+  res: Response
+): Promise<void> => {
+  const { id } = req.params;
+  // const result = await getOneEvent(id);
+  const result = await Event.findOne({ _id: id }, '-createdAt -updatedAt');
+  if (!result) {
+    throw HttpError(404, `Event with id=${id} not found`);
+  }
+  res.json(result);
+};
 
 const add = async (req: Request, res: Response) => {
   // const result = await createEvent(req.body);
@@ -36,17 +37,19 @@ const add = async (req: Request, res: Response) => {
   res.status(201).json(result);
 };
 
-// const updateById = async (req: Request, res: Response) => {
-//   const { id } = req.params;
-//   const result = await updateEvent({ id, data: req.body });
-//   if (!result) {
-//     throw HttpError(404, `Event with id=${id} not found`);
-//   }
-//   res.json(result);
-// };
+const updateById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  // const result = await updateEvent({ id, data: req.body });
+  const result = await Event.findByIdAndUpdate(id, req.body);
+  if (!result) {
+    throw HttpError(404, `Event with id=${id} not found`);
+  }
+  res.json(result);
+};
 
 // const deleteById = async (req: Request, res: Response) => {
 //   const { id } = req.params;
+//   // const result = await deleteEvent(id);
 //   const result = await deleteEvent(id);
 //   if (!result) {
 //     throw HttpError(404, `Event with id=${id} not found`);
@@ -57,8 +60,8 @@ const add = async (req: Request, res: Response) => {
 
 export default {
   getAll: ctrlWrapper(getAll),
-  // getById: ctrlWrapper(getById),
+  getById: ctrlWrapper(getById),
   add: ctrlWrapper(add),
-  // updateById: ctrlWrapper(updateById),
+  updateById: ctrlWrapper(updateById),
   // deleteById: ctrlWrapper(deleteById),
 };
