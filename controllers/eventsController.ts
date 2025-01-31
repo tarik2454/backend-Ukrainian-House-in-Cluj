@@ -47,21 +47,31 @@ const updateById = async (req: Request, res: Response) => {
   res.json(result);
 };
 
-// const deleteById = async (req: Request, res: Response) => {
-//   const { id } = req.params;
-//   // const result = await deleteEvent(id);
-//   const result = await deleteEvent(id);
-//   if (!result) {
-//     throw HttpError(404, `Event with id=${id} not found`);
-//   }
-//   // res.status(204).send(); // response.body non send;
-//   res.json({ message: 'Delete successfully' });
-// };
+const updateFavorite = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await Event.findByIdAndUpdate(id, req.body);
+  if (!result) {
+    throw HttpError(404, `Event with id=${id} not found`);
+  }
+  res.json(result);
+};
+
+const deleteById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  // const result = await deleteEvent(id);
+  const result = await Event.findByIdAndDelete(id);
+  if (!result) {
+    throw HttpError(404, `Event with id=${id} not found`);
+  }
+  // res.status(204).send(); // response.body non send;
+  res.json({ message: 'Delete success' });
+};
 
 export default {
   getAll: ctrlWrapper(getAll),
   getById: ctrlWrapper(getById),
   add: ctrlWrapper(add),
   updateById: ctrlWrapper(updateById),
-  // deleteById: ctrlWrapper(deleteById),
+  updateFavorite: ctrlWrapper(updateFavorite),
+  deleteById: ctrlWrapper(deleteById),
 };

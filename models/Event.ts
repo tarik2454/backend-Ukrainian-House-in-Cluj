@@ -27,7 +27,7 @@ const eventSchema = new Schema(
       enum: tags,
       required: true,
     },
-    favorites: { type: Boolean, default: false },
+    favorite: { type: Boolean, default: false },
   },
 
   { versionKey: false, timestamps: true }

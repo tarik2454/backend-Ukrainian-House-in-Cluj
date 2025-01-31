@@ -4,9 +4,13 @@ import eventsController from '../controllers/eventsController';
 
 import validateBody from '../decorators/validateBody';
 
-import { createEventSchema, updateEventSchema } from '../schemas/eventSchemas';
-
 import isValidId from '@/middelwares/isValidId';
+
+import {
+  createEventSchema,
+  eventUpdateFavoriteSchema,
+  updateEventSchema,
+} from '../schemas/eventSchemas';
 
 const eventsRouter = express.Router();
 
@@ -22,6 +26,13 @@ eventsRouter.put(
   eventsController.updateById
 );
 
-// eventsRouter.delete('/:id', eventsController.deleteById);
+eventsRouter.patch(
+  '/:id/favorite',
+  isValidId,
+  validateBody(eventUpdateFavoriteSchema),
+  eventsController.updateFavorite
+);
+
+eventsRouter.delete('/:id', eventsController.deleteById);
 
 export default eventsRouter;

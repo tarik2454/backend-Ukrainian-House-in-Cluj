@@ -11,9 +11,10 @@ export const createEventSchema = Joi.object({
       'any.required': `"date" must be exist`,
       'string.pattern.base': `"date" must match the format DD-MM-YYYY`,
     }),
-  title: Joi.string()
-    .required()
-    .messages({ 'any.required': `"title" must be exist` }),
+  title: Joi.string().required().messages({
+    'any.required': `"title" must be exist`,
+    'string.base': `"title" must be string`,
+  }),
   img: Joi.string(),
   description: Joi.string()
     .required()
@@ -31,12 +32,12 @@ export const createEventSchema = Joi.object({
       'any.required': `"tags" must be exist`,
       'array.includes': `"tags" contains an invalid value`,
     }),
-  favorites: Joi.boolean(),
+  favorite: Joi.boolean(),
 });
 
 export const updateEventSchema = Joi.object({
   publicationDate: Joi.string(),
-  title: Joi.string(),
+  title: Joi.string().messages({ 'string.base': `"title" must be string` }),
   img: Joi.string(),
   description: Joi.string(),
   eventDate: Joi.object({
@@ -46,5 +47,9 @@ export const updateEventSchema = Joi.object({
   }),
   registration: Joi.boolean(),
   tags: Joi.array().items(Joi.string()),
-  favorites: Joi.boolean(),
+  favorite: Joi.boolean(),
+});
+
+export const eventUpdateFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required(),
 });
