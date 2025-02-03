@@ -13,7 +13,6 @@ const eventSchema = new Schema(
     },
     title: { type: String, required: true },
     img: { type: String },
-    favorite: { type: Boolean, default: false },
   },
 
   { versionKey: false, timestamps: true }

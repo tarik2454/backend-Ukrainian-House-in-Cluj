@@ -13,7 +13,7 @@ interface RequestWithParams extends Request {
 }
 
 const getAll = async (req: Request, res: Response): Promise<void> => {
-  const result = await News.findById({}, '-createdAt -updatedAt');
+  const result = await News.find({}, '-createdAt -updatedAt');
   res.json(result);
 };
 
@@ -43,15 +43,6 @@ const updateById = async (req: Request, res: Response) => {
   res.json(result);
 };
 
-const updateFavorite = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const result = await News.findByIdAndUpdate(id, req.body);
-  if (!result) {
-    throw HttpError(404, `Event with id=${id} not found`);
-  }
-  res.json(result);
-};
-
 const deleteById = async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await News.findByIdAndDelete(id);
@@ -66,6 +57,5 @@ export default {
   getById: ctrlWrapper(getById),
   add: ctrlWrapper(add),
   updateById: ctrlWrapper(updateById),
-  updateFavorite: ctrlWrapper(updateFavorite),
   deleteById: ctrlWrapper(deleteById),
 };

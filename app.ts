@@ -4,6 +4,7 @@ import cors from 'cors';
 import 'dotenv/config';
 
 import eventsRouter from './routes/eventsRouter';
+import newsRouter from './routes/newsRouter';
 
 interface HttpError extends Error {
   status: number;
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/events', eventsRouter);
+app.use('/api/news', newsRouter);
 
 // import db from './db/events.json' assert { type: 'json' };
 // app.get('/', (req, res) => {

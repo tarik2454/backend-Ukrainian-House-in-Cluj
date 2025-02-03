@@ -14,7 +14,7 @@ interface RequestWithParams extends Request {
 
 const getAll = async (req: Request, res: Response): Promise<void> => {
   // const result = await getAllEvents();
-  const result = await Event.findById({}, '-createdAt -updatedAt');
+  const result = await Event.find({}, '-createdAt -updatedAt');
   res.json(result);
 };
 
