@@ -4,7 +4,7 @@ import { handleSaveError, preUpdate } from './hooks';
 
 import { publicationDateRegex } from '@/constants/regex';
 
-const eventSchema = new Schema(
+const newsItemSchema = new Schema(
   {
     publicationDate: {
       type: String,
@@ -13,17 +13,18 @@ const eventSchema = new Schema(
     },
     title: { type: String, required: true },
     img: { type: String },
+    description: { type: String, required: true },
   },
 
   { versionKey: false, timestamps: true }
 );
 
-eventSchema.post('save', handleSaveError);
+newsItemSchema.post('save', handleSaveError);
 
-eventSchema.pre('findOneAndUpdate', preUpdate);
+newsItemSchema.pre('findOneAndUpdate', preUpdate);
 
-eventSchema.post('findOneAndUpdate', handleSaveError);
+newsItemSchema.post('findOneAndUpdate', handleSaveError);
 
-const News = model('news', eventSchema);
+const News = model('news', newsItemSchema);
 
 export default News;

@@ -7,10 +7,9 @@ import validateBody from '../decorators/validateBody';
 import isValidId from '@/middelwares/isValidId';
 
 import {
-  createEventSchema,
-  eventUpdateFavoriteSchema,
-  updateEventSchema,
-} from '../schemas/eventSchemas';
+  createNewsItemSchema,
+  updateNewsItemSchema,
+} from '@/schemas/newsItemSchemas';
 
 const newsRouter = express.Router();
 
@@ -18,11 +17,11 @@ newsRouter.get('/', newsController.getAll);
 
 newsRouter.get('/:id', isValidId, newsController.getById);
 
-newsRouter.post('/', validateBody(createEventSchema), newsController.add);
+newsRouter.post('/', validateBody(createNewsItemSchema), newsController.add);
 
 newsRouter.put(
   '/:id',
-  validateBody(updateEventSchema),
+  validateBody(updateNewsItemSchema),
   newsController.updateById
 );
 

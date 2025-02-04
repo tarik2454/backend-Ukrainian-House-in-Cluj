@@ -4,7 +4,7 @@ import HttpError from '../helpers/HttpError';
 
 import ctrlWrapper from '../decorators/ctrlWrapper';
 
-import News from '@/models/News';
+import NewsItem from '@/models/NewsItem';
 
 interface RequestWithParams extends Request {
   params: {
@@ -13,7 +13,7 @@ interface RequestWithParams extends Request {
 }
 
 const getAll = async (req: Request, res: Response): Promise<void> => {
-  const result = await News.find({}, '-createdAt -updatedAt');
+  const result = await NewsItem.find({}, '-createdAt -updatedAt');
   res.json(result);
 };
 
@@ -22,7 +22,7 @@ const getById = async (
   res: Response
 ): Promise<void> => {
   const { id } = req.params;
-  const result = await News.findOne({ _id: id }, '-createdAt -updatedAt');
+  const result = await NewsItem.findOne({ _id: id }, '-createdAt -updatedAt');
   if (!result) {
     throw HttpError(404, `Event with id=${id} not found`);
   }
@@ -30,13 +30,13 @@ const getById = async (
 };
 
 const add = async (req: Request, res: Response) => {
-  const result = await News.create(req.body);
+  const result = await NewsItem.create(req.body);
   res.status(201).json(result);
 };
 
 const updateById = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await News.findByIdAndUpdate(id, req.body);
+  const result = await NewsItem.findByIdAndUpdate(id, req.body);
   if (!result) {
     throw HttpError(404, `Event with id=${id} not found`);
   }
@@ -45,7 +45,7 @@ const updateById = async (req: Request, res: Response) => {
 
 const deleteById = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await News.findByIdAndDelete(id);
+  const result = await NewsItem.findByIdAndDelete(id);
   if (!result) {
     throw HttpError(404, `Event with id=${id} not found`);
   }
