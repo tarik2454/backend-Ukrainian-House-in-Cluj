@@ -17,9 +17,11 @@ const eventSchema = new Schema(
     img: { type: String },
     description: { type: String, required: true },
     eventDate: {
-      date: { type: String },
-      time: { type: String },
-      location: { type: String },
+      type: {
+        date: { type: String, match: publicationDateRegex },
+        time: { type: String },
+        location: { type: String },
+      },
     },
     registration: { type: Boolean, default: false, required: true },
     tags: {
