@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import 'dotenv/config';
 
+import authRouter from './routes/authRouter';
 import eventsRouter from './routes/eventsRouter';
 import newsRouter from './routes/newsRouter';
 
@@ -17,6 +18,7 @@ const multer = require('multer');
 app.use(cors());
 app.use(express.json());
 
+app.use('/api/auth', authRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/news', newsRouter);
 
