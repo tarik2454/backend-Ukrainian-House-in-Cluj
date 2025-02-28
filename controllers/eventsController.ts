@@ -4,7 +4,7 @@ import HttpError from '../helpers/HttpError';
 
 import ctrlWrapper from '../decorators/ctrlWrapper';
 
-import Event from '@/models/Event';
+import Event from '../models/Event';
 
 interface RequestWithParams extends Request {
   params: {
