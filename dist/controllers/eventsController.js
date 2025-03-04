@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const Event_1 = __importDefault(require("../models/Event"));
 const HttpError_1 = __importDefault(require("../helpers/HttpError"));
 const ctrlWrapper_1 = __importDefault(require("../decorators/ctrlWrapper"));
-const Event_1 = __importDefault(require("../models/Event"));
 const getAll = async (req, res) => {
     // const result = await getAllEvents();
     const result = await Event_1.default.find({}, '-createdAt -updatedAt');
