@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 import { handleSaveError, preUpdate } from './hooks';
 
-import { tags } from '@/constants/tags';
+import { tags } from '../constants/tags';
 
 import { publicationDateRegex } from '@/constants/regex';
 

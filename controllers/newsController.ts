@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 
+import NewsItem from '@/models/NewsItem';
+
 import HttpError from '../helpers/HttpError';
 
 import ctrlWrapper from '../decorators/ctrlWrapper';
-
-import NewsItem from '@/models/NewsItem';
 
 interface RequestWithParams extends Request {
   params: {
@@ -22,7 +22,10 @@ const getById = async (
   res: Response
 ): Promise<void> => {
   const { id } = req.params;
-  const result = await NewsItem.findOne({ _id: id }, '-createdAt -updatedAt');
+  const result = await NewsItem.findOne(
+    { _id: id },
+    '-createdAt -updatedAt'
+  );
   if (!result) {
     throw HttpError(404, `Event with id=${id} not found`);
   }

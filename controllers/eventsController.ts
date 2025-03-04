@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 
+import Event from '../models/Event';
+
 import HttpError from '../helpers/HttpError';
 
 import ctrlWrapper from '../decorators/ctrlWrapper';
-
-import Event from '../models/Event';
 
 interface RequestWithParams extends Request {
   params: {
