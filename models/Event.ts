@@ -4,7 +4,7 @@ import { handleSaveError, preUpdate } from './hooks';
 
 import { tags } from '../constants/tags';
 
-import { publicationDateRegex } from '@/constants/regex';
+import { publicationDateRegex } from '../constants/regex';
 
 const eventSchema = new Schema(
   {
