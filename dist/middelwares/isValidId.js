@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
-const HttpError_1 = __importDefault(require("@/helpers/HttpError"));
+const HttpError_1 = __importDefault(require("../helpers/HttpError"));
 const isValidId = (req, res, next) => {
     const { id } = req.params;
     if (!(0, mongoose_1.isValidObjectId)(id)) {
