@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const hooks_1 = require("./hooks");
 const tags_1 = require("../constants/tags");
-const regex_1 = require("@/constants/regex");
+const regex_1 = require("../constants/regex");
 const eventSchema = new mongoose_1.Schema({
     publicationDate: {
         type: String,
@@ -41,6 +41,13 @@ const eventSchema = new mongoose_1.Schema({
         default: false,
     },
 }, { versionKey: false, timestamps: true });
+eventSchema.set('toJSON', {
+    transform: (doc, ret) => {
+        delete ret.createdAt;
+        delete ret.updatedAt;
+        return ret;
+    },
+});
 eventSchema.post('save', hooks_1.handleSaveError);
 eventSchema.pre('findOneAndUpdate', hooks_1.preUpdate);
 eventSchema.post('findOneAndUpdate', hooks_1.handleSaveError);

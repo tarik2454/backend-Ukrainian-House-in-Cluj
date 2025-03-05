@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateNewsItemSchema = exports.createNewsItemSchema = void 0;
 const joi_1 = __importDefault(require("joi"));
-const regex_1 = require("@/constants/regex");
+const regex_1 = require("../constants/regex");
 exports.createNewsItemSchema = joi_1.default.object({
     publicationDate: joi_1.default.string()
         .pattern(regex_1.publicationDateRegex)

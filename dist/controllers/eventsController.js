@@ -7,12 +7,12 @@ const Event_1 = __importDefault(require("../models/Event"));
 const HttpError_1 = __importDefault(require("../helpers/HttpError"));
 const ctrlWrapper_1 = __importDefault(require("../decorators/ctrlWrapper"));
 const getAll = async (req, res) => {
-    const result = await Event_1.default.find({}, '-createdAt -updatedAt');
+    const result = await Event_1.default.find({});
     res.json(result);
 };
 const getById = async (req, res) => {
     const { id } = req.params;
-    const result = await Event_1.default.findOne({ _id: id }, '-createdAt -updatedAt');
+    const result = await Event_1.default.findOne({ _id: id });
     if (!result) {
         throw (0, HttpError_1.default)(404, `Event with id=${id} not found`);
     }

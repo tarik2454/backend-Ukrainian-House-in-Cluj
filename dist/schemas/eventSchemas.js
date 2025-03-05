@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.eventUpdateFavoriteSchema = exports.updateEventSchema = exports.createEventSchema = void 0;
 const joi_1 = __importDefault(require("joi"));
-const tags_1 = require("@/constants/tags");
-const regex_1 = require("@/constants/regex");
+const tags_1 = require("../constants/tags");
+const regex_1 = require("../constants/regex");
 exports.createEventSchema = joi_1.default.object({
     publicationDate: joi_1.default.string()
         .pattern(regex_1.publicationDateRegex)
