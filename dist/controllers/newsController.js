@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const NewsItem_1 = __importDefault(require("@/models/NewsItem"));
+const NewsItem_1 = __importDefault(require("../models/NewsItem"));
 const HttpError_1 = __importDefault(require("../helpers/HttpError"));
 const ctrlWrapper_1 = __importDefault(require("../decorators/ctrlWrapper"));
 const getAll = async (req, res) => {

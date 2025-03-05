@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import NewsItem from '@/models/NewsItem';
+import NewsItem from '../models/NewsItem';
 
 import HttpError from '../helpers/HttpError';
 
