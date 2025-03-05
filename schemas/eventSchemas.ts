@@ -1,7 +1,8 @@
 import Joi from 'joi';
 
-import { tags } from '@/constants/tags';
-import { publicationDateRegex } from '@/constants/regex';
+import { tags } from '../constants/tags';
+
+import { publicationDateRegex } from '../constants/regex';
 
 export const createEventSchema = Joi.object({
   publicationDate: Joi.string()

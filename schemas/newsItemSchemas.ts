@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-import { publicationDateRegex } from '@/constants/regex';
+import { publicationDateRegex } from '../constants/regex';
 
 export const createNewsItemSchema = Joi.object({
   publicationDate: Joi.string()

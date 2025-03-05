@@ -13,7 +13,7 @@ interface RequestWithParams extends Request {
 }
 
 const getAll = async (req: Request, res: Response): Promise<void> => {
-  const result = await Event.find({}, '-createdAt -updatedAt');
+  const result = await Event.find({});
   res.json(result);
 };
 
@@ -22,7 +22,7 @@ const getById = async (
   res: Response
 ): Promise<void> => {
   const { id } = req.params;
-  const result = await Event.findOne({ _id: id }, '-createdAt -updatedAt');
+  const result = await Event.findOne({ _id: id });
   if (!result) {
     throw HttpError(404, `Event with id=${id} not found`);
   }

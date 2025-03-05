@@ -48,6 +48,14 @@ const eventSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
+eventSchema.set('toJSON', {
+  transform: (doc, ret) => {
+    delete ret.createdAt;
+    delete ret.updatedAt;
+    return ret;
+  },
+});
+
 eventSchema.post('save', handleSaveError);
 
 eventSchema.pre('findOneAndUpdate', preUpdate);
