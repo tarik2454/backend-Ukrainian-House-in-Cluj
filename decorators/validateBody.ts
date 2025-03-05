@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+
 import HttpError from '../helpers/HttpError';
 
 export default function validateBody(schema: any) {
