@@ -9,7 +9,7 @@ import isValidId from '../middelwares/isValidId';
 import {
   createNewsItemSchema,
   updateNewsItemSchema,
-} from '@/schemas/newsItemSchemas';
+} from '../schemas/newsItemSchemas';
 
 const newsRouter = express.Router();
 
