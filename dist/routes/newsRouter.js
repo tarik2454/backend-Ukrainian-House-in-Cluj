@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const newsController_1 = __importDefault(require("../controllers/newsController"));
 const validateBody_1 = __importDefault(require("../decorators/validateBody"));
-const isValidId_1 = __importDefault(require("@/middelwares/isValidId"));
+const isValidId_1 = __importDefault(require("../middelwares/isValidId"));
 const newsItemSchemas_1 = require("@/schemas/newsItemSchemas");
 const newsRouter = express_1.default.Router();
 newsRouter.get('/', newsController_1.default.getAll);

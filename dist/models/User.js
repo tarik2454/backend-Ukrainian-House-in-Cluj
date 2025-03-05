@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const hooks_1 = require("./hooks");
-const regex_1 = require("@/constants/regex");
+const regex_1 = require("../constants/regex");
 const userSchema = new mongoose_1.Schema({
     username: {
         type: String,
@@ -24,10 +24,7 @@ const userSchema = new mongoose_1.Schema({
     //   enum: ['user', 'admin'],
     //   default: 'user',
     // },
-}, {
-    versionKey: false,
-    timestamps: true,
-});
+}, { versionKey: false, timestamps: true });
 userSchema.post('save', hooks_1.handleSaveError);
 userSchema.pre('findOneAndUpdate', hooks_1.preUpdate);
 userSchema.post('findOneAndUpdate', hooks_1.handleSaveError);

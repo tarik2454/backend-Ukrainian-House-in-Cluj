@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const eventsController_1 = __importDefault(require("../controllers/eventsController"));
 const validateBody_1 = __importDefault(require("../decorators/validateBody"));
-const isValidId_1 = __importDefault(require("@/middelwares/isValidId"));
+const isValidId_1 = __importDefault(require("../middelwares/isValidId"));
 const eventSchemas_1 = require("../schemas/eventSchemas");
 const eventsRouter = express_1.default.Router();
 eventsRouter.get('/', eventsController_1.default.getAll);

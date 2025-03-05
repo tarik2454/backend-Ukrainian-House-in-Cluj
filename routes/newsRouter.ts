@@ -4,7 +4,7 @@ import newsController from '../controllers/newsController';
 
 import validateBody from '../decorators/validateBody';
 
-import isValidId from '@/middelwares/isValidId';
+import isValidId from '../middelwares/isValidId';
 
 import {
   createNewsItemSchema,
@@ -17,7 +17,11 @@ newsRouter.get('/', newsController.getAll);
 
 newsRouter.get('/:id', isValidId, newsController.getById);
 
-newsRouter.post('/', validateBody(createNewsItemSchema), newsController.add);
+newsRouter.post(
+  '/',
+  validateBody(createNewsItemSchema),
+  newsController.add
+);
 
 newsRouter.put(
   '/:id',

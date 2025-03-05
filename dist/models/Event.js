@@ -10,9 +10,15 @@ const eventSchema = new mongoose_1.Schema({
         match: regex_1.publicationDateRegex,
         required: true,
     },
-    title: { type: String, required: true },
+    title: {
+        type: String,
+        required: true,
+    },
     img: { type: String },
-    description: { type: String, required: true },
+    description: {
+        type: String,
+        required: true,
+    },
     eventDate: {
         type: {
             date: { type: String, match: regex_1.publicationDateRegex },
@@ -20,13 +26,20 @@ const eventSchema = new mongoose_1.Schema({
             location: { type: String },
         },
     },
-    registration: { type: Boolean, default: false, required: true },
+    registration: {
+        type: Boolean,
+        default: false,
+        required: true,
+    },
     tags: {
         type: [String],
         enum: tags_1.tags,
         required: true,
     },
-    favorite: { type: Boolean, default: false },
+    favorite: {
+        type: Boolean,
+        default: false,
+    },
 }, { versionKey: false, timestamps: true });
 eventSchema.post('save', hooks_1.handleSaveError);
 eventSchema.pre('findOneAndUpdate', hooks_1.preUpdate);

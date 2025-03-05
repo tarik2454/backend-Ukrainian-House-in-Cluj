@@ -4,7 +4,7 @@ import eventsController from '../controllers/eventsController';
 
 import validateBody from '../decorators/validateBody';
 
-import isValidId from '@/middelwares/isValidId';
+import isValidId from '../middelwares/isValidId';
 
 import {
   createEventSchema,

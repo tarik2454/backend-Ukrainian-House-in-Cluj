@@ -13,9 +13,15 @@ const eventSchema = new Schema(
       match: publicationDateRegex,
       required: true,
     },
-    title: { type: String, required: true },
+    title: {
+      type: String,
+      required: true,
+    },
     img: { type: String },
-    description: { type: String, required: true },
+    description: {
+      type: String,
+      required: true,
+    },
     eventDate: {
       type: {
         date: { type: String, match: publicationDateRegex },
@@ -23,13 +29,20 @@ const eventSchema = new Schema(
         location: { type: String },
       },
     },
-    registration: { type: Boolean, default: false, required: true },
+    registration: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
     tags: {
       type: [String],
       enum: tags,
       required: true,
     },
-    favorite: { type: Boolean, default: false },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   { versionKey: false, timestamps: true }

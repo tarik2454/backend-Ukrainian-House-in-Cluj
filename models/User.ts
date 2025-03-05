@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 import { handleSaveError, preUpdate } from './hooks';
 
-import { emailRegex } from '@/constants/regex';
+import { emailRegex } from '../constants/regex';
 
 const userSchema = new Schema(
   {
@@ -29,10 +29,7 @@ const userSchema = new Schema(
     // },
   },
 
-  {
-    versionKey: false,
-    timestamps: true,
-  }
+  { versionKey: false, timestamps: true }
 );
 
 userSchema.post('save', handleSaveError);
