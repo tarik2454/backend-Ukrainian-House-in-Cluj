@@ -22,11 +22,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/news', newsRouter);
 
-// import db from './db/events.json' assert { type: 'json' };
-// app.get('/', (req, res) => {
-//   res.json(db);
-// });
-
 app.use((_: Request, res: Response) => {
   res.status(404).json({ message: 'Route not found' });
 });
