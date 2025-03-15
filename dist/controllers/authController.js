@@ -4,9 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const User_1 = __importDefault(require("../models/User"));
 const HttpError_1 = __importDefault(require("../helpers/HttpError"));
 const ctrlWrapper_1 = __importDefault(require("../decorators/ctrlWrapper"));
+const { JWT_SECRET } = process.env;
+if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET not set in environment variables!');
+}
 const signup = async (req, res, next) => {
     const { email, password } = req.body;
     const existingUser = await User_1.default.findOne({ email });
@@ -30,7 +35,10 @@ const signin = async (req, res, next) => {
     if (!passwordCompare) {
         throw (0, HttpError_1.default)(401, 'Email or password is invalid');
     }
-    const token = '23.s4.55';
+    const payload = {
+        id: user.id,
+    };
+    const token = jsonwebtoken_1.default.sign(payload, JWT_SECRET, { expiresIn: '23h' });
     res.json({ token });
 };
 exports.default = {

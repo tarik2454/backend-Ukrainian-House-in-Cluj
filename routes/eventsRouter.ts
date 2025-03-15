@@ -5,6 +5,7 @@ import eventsController from '../controllers/eventsController';
 import validateBody from '../decorators/validateBody';
 
 import isValidId from '../middelwares/isValidId';
+import authenticate from '@/middelwares/authenticate';
 
 import {
   createEventSchema,
@@ -13,6 +14,8 @@ import {
 } from '../schemas/eventSchemas';
 
 const eventsRouter = express.Router();
+
+eventsRouter.use(authenticate);
 
 eventsRouter.get('/', eventsController.getAll);
 

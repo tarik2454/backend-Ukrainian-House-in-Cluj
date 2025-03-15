@@ -18,10 +18,6 @@ app.use(express_1.default.json());
 app.use('/api/auth', authRouter_1.default);
 app.use('/api/events', eventsRouter_1.default);
 app.use('/api/news', newsRouter_1.default);
-// import db from './db/events.json' assert { type: 'json' };
-// app.get('/', (req, res) => {
-//   res.json(db);
-// });
 app.use((_, res) => {
     res.status(404).json({ message: 'Route not found' });
 });

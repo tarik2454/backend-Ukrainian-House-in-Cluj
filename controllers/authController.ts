@@ -1,12 +1,19 @@
 import { NextFunction, Request, Response } from 'express';
 
-import bcript from 'bcryptjs';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 import User from '../models/User';
 
 import HttpError from '../helpers/HttpError';
 
 import ctrlWrapper from '../decorators/ctrlWrapper';
+
+const { JWT_SECRET } = process.env;
+
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET not set in environment variables!');
+}
 
 const signup = async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
@@ -15,7 +22,7 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
     throw HttpError(409, 'Email already in use');
   }
 
-  const hashPassword = await bcript.hash(password, 10);
+  const hashPassword = await bcrypt.hash(password, 10);
 
   const newUser = await User.create({ ...req.body, password: hashPassword });
 
@@ -31,12 +38,16 @@ const signin = async (req: Request, res: Response, next: NextFunction) => {
   if (!user) {
     throw HttpError(401, 'Email or password is invalid');
   }
-  const passwordCompare = await bcript.compare(password, user.password);
+  const passwordCompare = await bcrypt.compare(password, user.password);
   if (!passwordCompare) {
     throw HttpError(401, 'Email or password is invalid');
   }
 
-  const token = '23.s4.55';
+  const payload = {
+    id: user.id,
+  };
+
+  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '23h' });
 
   res.json({ token });
 };
