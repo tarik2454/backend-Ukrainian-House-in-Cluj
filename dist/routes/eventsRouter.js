@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const eventsController_1 = __importDefault(require("../controllers/eventsController"));
 const validateBody_1 = __importDefault(require("../decorators/validateBody"));
 const isValidId_1 = __importDefault(require("../middelwares/isValidId"));
-const authenticate_1 = __importDefault(require("@/middelwares/authenticate"));
+const authenticate_1 = __importDefault(require("../middelwares/authenticate"));
 const eventSchemas_1 = require("../schemas/eventSchemas");
 const eventsRouter = express_1.default.Router();
 eventsRouter.use(authenticate_1.default);

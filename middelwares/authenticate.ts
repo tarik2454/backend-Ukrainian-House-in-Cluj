@@ -31,7 +31,6 @@ const authenticate = async (
     if (!decoded || !decoded.id) {
       return next(HttpError(401, 'Unauthorized: Invalid token payload'));
     }
-
     const user = await User.findById(decoded.id);
     if (!user) {
       return next(HttpError(401, 'Unauthorized: User not found'));
