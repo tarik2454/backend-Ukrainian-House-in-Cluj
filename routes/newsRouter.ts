@@ -5,7 +5,7 @@ import newsController from '../controllers/newsController';
 import validateBody from '../decorators/validateBody';
 
 import isValidId from '../middelwares/isValidId';
-import authenticate from '@/middelwares/authenticate';
+import authenticate from '../middelwares/authenticate';
 
 import {
   createNewsItemSchema,
