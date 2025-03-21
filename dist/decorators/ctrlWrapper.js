@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ctrlWrapper;
-function ctrlWrapper(ctrl) {
+function ctrlWrapper(fn) {
     return async (req, res, next) => {
         try {
-            await ctrl(req, res, next);
+            await fn(req, res, next);
         }
         catch (err) {
             next(err);

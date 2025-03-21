@@ -7,7 +7,7 @@ interface CustomError extends Error {
 
 export const handleSaveError = (
   error: CustomError,
-  data: any,
+  data: unknown,
   next: NextFunction
 ) => {
   const { name, code } = error;

@@ -1,9 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 
-export default function ctrlWrapper(ctrl: Function) {
+export default function ctrlWrapper(
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>
+) {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      await ctrl(req, res, next);
+      await fn(req, res, next);
     } catch (err) {
       next(err);
     }

@@ -12,7 +12,7 @@ const eventsRouter_1 = __importDefault(require("./routes/eventsRouter"));
 const newsRouter_1 = __importDefault(require("./routes/newsRouter"));
 const app = (0, express_1.default)();
 app.use((0, morgan_1.default)('tiny'));
-const multer = require('multer');
+// const multer = require('multer');
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use('/api/auth', authRouter_1.default);
@@ -21,7 +21,7 @@ app.use('/api/news', newsRouter_1.default);
 app.use((_, res) => {
     res.status(404).json({ message: 'Route not found' });
 });
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
     const { status = 500, message = 'Server error' } = err;
     res.status(status).json({ message });
 });

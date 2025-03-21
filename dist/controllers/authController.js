@@ -12,7 +12,7 @@ const { JWT_SECRET } = process.env;
 if (!JWT_SECRET) {
     throw new Error('JWT_SECRET not set in environment variables!');
 }
-const signup = async (req, res, next) => {
+const signup = async (req, res) => {
     const { email, password } = req.body;
     const existingUser = await User_1.default.findOne({ email });
     if (existingUser) {
@@ -25,7 +25,7 @@ const signup = async (req, res, next) => {
         email: newUser.email,
     });
 };
-const signin = async (req, res, next) => {
+const signin = async (req, res) => {
     const { email, password } = req.body;
     const user = await User_1.default.findOne({ email });
     if (!user) {

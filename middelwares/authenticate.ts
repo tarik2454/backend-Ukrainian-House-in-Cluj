@@ -2,7 +2,10 @@ import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 import HttpError from '../helpers/HttpError';
+
 import User from '../models/User';
+
+import { UserType } from '../types/user';
 
 const { JWT_SECRET } = process.env;
 
@@ -11,7 +14,7 @@ if (!JWT_SECRET) {
 }
 
 interface AuthenticatedRequest extends Request {
-  user?: any;
+  user?: UserType;
 }
 
 const authenticate = async (

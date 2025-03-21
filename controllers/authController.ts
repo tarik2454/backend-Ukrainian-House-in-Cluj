@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -15,7 +15,7 @@ if (!JWT_SECRET) {
   throw new Error('JWT_SECRET not set in environment variables!');
 }
 
-const signup = async (req: Request, res: Response, next: NextFunction) => {
+const signup = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const existingUser = await User.findOne({ email });
   if (existingUser) {
@@ -32,7 +32,7 @@ const signup = async (req: Request, res: Response, next: NextFunction) => {
   });
 };
 
-const signin = async (req: Request, res: Response, next: NextFunction) => {
+const signin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
