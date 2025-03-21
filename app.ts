@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import 'dotenv/config';
@@ -26,9 +26,9 @@ app.use((_: Request, res: Response) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-app.use((err: HttpError, req: Request, res: Response) => {
-  const { status = 500, message = 'Server error' } = err;
-  res.status(status).json({ message });
+app.use((err: HttpError, req: Request, res: Response, _next: NextFunction) => {
+  const { status = 500, message = 'Internal Server Error' } = err;
+  res.status(status).json({ error: message });
 });
 
 export default app;
