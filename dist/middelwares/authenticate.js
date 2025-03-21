@@ -17,19 +17,19 @@ const authenticate = async (req, res, next) => {
         return next((0, HttpError_1.default)(401, 'Unauthorized: No valid token provided'));
     }
     try {
-        const decoded = jsonwebtoken_1.default.verify(token, JWT_SECRET);
-        if (!decoded || !decoded.id) {
-            return next((0, HttpError_1.default)(401, 'Unauthorized: Invalid token payload'));
-        }
-        const user = await User_1.default.findById(decoded.id);
+        const { id } = jsonwebtoken_1.default.verify(token, JWT_SECRET);
+        const user = await User_1.default.findById(id);
         if (!user) {
             return next((0, HttpError_1.default)(401, 'Unauthorized: User not found'));
         }
-        req.user = user;
         next();
     }
     catch (error) {
-        next((0, HttpError_1.default)(401, error.message));
+        // next(HttpError(401, error.message));
+        if (error instanceof jsonwebtoken_1.default.JsonWebTokenError) {
+            return next((0, HttpError_1.default)(401, 'Unauthorized: Invalid token'));
+        }
+        next((0, HttpError_1.default)(401, 'Unauthorized: Token verification failed'));
     }
 };
 exports.default = authenticate;

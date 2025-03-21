@@ -21,9 +21,9 @@ app.use('/api/news', newsRouter_1.default);
 app.use((_, res) => {
     res.status(404).json({ message: 'Route not found' });
 });
-app.use((err, req, res) => {
-    const { status = 500, message = 'Server error' } = err;
-    res.status(status).json({ message });
+app.use((err, req, res, _next) => {
+    const { status = 500, message = 'Internal Server Error' } = err;
+    res.status(status).json({ error: message });
 });
 exports.default = app;
 //# sourceMappingURL=app.js.map
