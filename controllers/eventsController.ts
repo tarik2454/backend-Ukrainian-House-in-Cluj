@@ -13,7 +13,10 @@ interface RequestWithParams extends Request {
 }
 
 const getAll = async (req: Request, res: Response): Promise<void> => {
-  const result = await Event.find({});
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+  const result = await Event.find({}, {}, { skip, limit });
   res.json(result);
 };
 

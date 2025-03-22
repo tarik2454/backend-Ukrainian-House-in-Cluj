@@ -6,6 +6,8 @@ import validateBody from '../decorators/validateBody';
 
 import { userSignupSchema, userSigninSchema } from '../schemas/authSchemas';
 
+import authenticate from '../middelwares/authenticate';
+
 const authRouter = express.Router();
 
 authRouter.post(
@@ -19,5 +21,7 @@ authRouter.post(
   validateBody(userSigninSchema),
   authController.signin
 );
+
+authRouter.post('/signout', authenticate, authController.signout);
 
 export default authRouter;

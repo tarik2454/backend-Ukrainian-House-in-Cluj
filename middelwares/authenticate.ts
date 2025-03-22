@@ -32,9 +32,10 @@ const authenticate = async (
   try {
     const { id } = jwt.verify(token, JWT_SECRET) as JwtPayload;
     const user = await User.findById(id);
-    if (!user) {
+    if (!user || !user.token) {
       return next(HttpError(401, 'Unauthorized: User not found'));
     }
+    req.user = user;
     next();
   } catch (error) {
     // next(HttpError(401, error.message));

@@ -9,6 +9,10 @@ import HttpError from '../helpers/HttpError';
 
 import ctrlWrapper from '../decorators/ctrlWrapper';
 
+interface AuthRequest extends Request {
+  user?: { _id: string };
+}
+
 const { JWT_SECRET } = process.env;
 
 if (!JWT_SECRET) {
@@ -48,11 +52,25 @@ const signin = async (req: Request, res: Response) => {
   };
 
   const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '23h' });
+  await User.findByIdAndUpdate(user._id, { token });
 
   res.json({ token });
+};
+
+const signout = async (req: AuthRequest, res: Response) => {
+  if (!req.user) {
+    throw HttpError(401, 'Not authorized');
+  }
+  const { _id } = req.user;
+  await User.findByIdAndUpdate(_id, { token: '' });
+
+  res.json({
+    message: 'Signout successful',
+  });
 };
 
 export default {
   signup: ctrlWrapper(signup),
   signin: ctrlWrapper(signin),
+  signout: ctrlWrapper(signout),
 };
