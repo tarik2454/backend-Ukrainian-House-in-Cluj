@@ -14,20 +14,26 @@ import {
 
 const newsRouter = express.Router();
 
-newsRouter.use(authenticate);
+// newsRouter.use(authenticate);
 
 newsRouter.get('/', newsController.getAll);
 
 newsRouter.get('/:id', isValidId, newsController.getById);
 
-newsRouter.post('/', validateBody(createNewsItemSchema), newsController.add);
+newsRouter.post(
+  '/',
+  authenticate,
+  validateBody(createNewsItemSchema),
+  newsController.add
+);
 
 newsRouter.put(
   '/:id',
+  authenticate,
   validateBody(updateNewsItemSchema),
   newsController.updateById
 );
 
-newsRouter.delete('/:id', newsController.deleteById);
+newsRouter.delete('/:id', authenticate, newsController.deleteById);
 
 export default newsRouter;

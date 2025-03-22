@@ -15,27 +15,34 @@ import {
 
 const eventsRouter = express.Router();
 
-eventsRouter.use(authenticate);
+// eventsRouter.use(authenticate);
 
 eventsRouter.get('/', eventsController.getAll);
 
 eventsRouter.get('/:id', isValidId, eventsController.getById);
 
-eventsRouter.post('/', validateBody(createEventSchema), eventsController.add);
+eventsRouter.post(
+  '/',
+  authenticate,
+  validateBody(createEventSchema),
+  eventsController.add
+);
 
 eventsRouter.put(
   '/:id',
+  authenticate,
   validateBody(updateEventSchema),
   eventsController.updateById
 );
 
 eventsRouter.patch(
   '/:id/favorite',
+  authenticate,
   isValidId,
   validateBody(eventUpdateFavoriteSchema),
   eventsController.updateFavorite
 );
 
-eventsRouter.delete('/:id', eventsController.deleteById);
+eventsRouter.delete('/:id', authenticate, eventsController.deleteById);
 
 export default eventsRouter;

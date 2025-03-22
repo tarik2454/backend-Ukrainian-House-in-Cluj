@@ -8,11 +8,11 @@ import User from '../models/User';
 
 import { UserType } from '../types/user';
 
-const { JWT_SECRET } = process.env;
-
 interface AuthenticatedRequest extends Request {
   user?: UserType;
 }
+
+const { JWT_SECRET } = process.env;
 
 if (!JWT_SECRET) {
   throw new Error('JWT_SECRET not set in environment variables!');
