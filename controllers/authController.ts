@@ -10,7 +10,7 @@ import HttpError from '../helpers/HttpError';
 import ctrlWrapper from '../decorators/ctrlWrapper';
 
 interface AuthRequest extends Request {
-  user?: { _id: string };
+  user?: { _id: string; username?: string; email?: string };
 }
 
 const { JWT_SECRET } = process.env;
@@ -57,6 +57,15 @@ const signin = async (req: Request, res: Response) => {
   res.json({ token });
 };
 
+const getCurrent = async (req: AuthRequest, res: Response) => {
+  if (!req.user) {
+    throw HttpError(401, 'Not authorized');
+  }
+  const { username, email } = req.user;
+
+  res.json({ username, email });
+};
+
 const signout = async (req: AuthRequest, res: Response) => {
   if (!req.user) {
     throw HttpError(401, 'Not authorized');
@@ -72,5 +81,6 @@ const signout = async (req: AuthRequest, res: Response) => {
 export default {
   signup: ctrlWrapper(signup),
   signin: ctrlWrapper(signin),
+  getCurrent: ctrlWrapper(getCurrent),
   signout: ctrlWrapper(signout),
 };
