@@ -14,7 +14,6 @@ interface HttpError extends Error {
 const app = express();
 
 app.use(morgan('tiny'));
-// const multer = require('multer');
 app.use(cors());
 app.use(express.json());
 
