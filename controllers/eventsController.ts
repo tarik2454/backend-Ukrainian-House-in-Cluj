@@ -1,8 +1,11 @@
 import { Request, Response } from 'express';
+import fs from 'fs/promises';
+// import path from 'path';
 
 import Event from '../models/Event';
 
 import HttpError from '../helpers/HttpError';
+import cloudinary from '../helpers/cloudinary';
 
 import ctrlWrapper from '../decorators/ctrlWrapper';
 
@@ -11,6 +14,8 @@ interface RequestWithParams extends Request {
     id: string;
   };
 }
+
+// const postersEventsPath = path.resolve('public', 'postersEvents');
 
 const getAll = async (req: Request, res: Response): Promise<void> => {
   const page = Number(req.query.page) || 1;
@@ -33,7 +38,18 @@ const getById = async (
 };
 
 const add = async (req: Request, res: Response) => {
-  const result = await Event.create(req.body);
+  if (!req.file) {
+    throw HttpError(400, 'File is missing');
+  }
+  const { url: poster } = await cloudinary.uploader.upload(req.file.path, {
+    folder: 'backend-Ukrainian-House-in-Cluj/postersEvents',
+  });
+  await fs.unlink(req.file.path);
+  // const { path: oldPath, filename } = req.file;
+  // const newPath = path.join(postersEventsPath, filename);
+  // await fs.rename(oldPath, newPath);
+  // const poster = path.join('postersEvents', filename);
+  const result = await Event.create({ ...req.body, poster });
   res.status(201).json(result);
 };
 

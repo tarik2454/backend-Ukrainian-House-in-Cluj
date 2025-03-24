@@ -17,7 +17,7 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
-    img: { type: String },
+    poster: { type: String },
     description: {
       type: String,
       required: true,
