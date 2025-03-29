@@ -2,11 +2,12 @@ import { Request, Response } from 'express';
 
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import path from 'path';
+import gravatar from 'gravatar';
+import fs from 'fs/promises';
 
 import User from '../models/User';
-
 import HttpError from '../helpers/HttpError';
-
 import ctrlWrapper from '../decorators/ctrlWrapper';
 
 interface AuthRequest extends Request {
@@ -15,12 +16,25 @@ interface AuthRequest extends Request {
 
 const { JWT_SECRET } = process.env;
 
+const avatarPath = path.resolve('public', 'avatars');
+
 if (!JWT_SECRET) {
   throw new Error('JWT_SECRET not set in environment variables!');
 }
 
 const signup = async (req: Request, res: Response) => {
   const { email, password } = req.body;
+  let avatarURL: string;
+
+  if (req.file) {
+    const { path: oldPath, filename } = req.file;
+    const newPath = path.join(avatarPath, filename);
+    await fs.rename(oldPath, newPath);
+    avatarURL = path.join('avatars', filename);
+  } else {
+    avatarURL = gravatar.url(email, { s: '250', d: 'retro' });
+  }
+
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     throw HttpError(409, 'Email already in use');
@@ -28,11 +42,16 @@ const signup = async (req: Request, res: Response) => {
 
   const hashPassword = await bcrypt.hash(password, 10);
 
-  const newUser = await User.create({ ...req.body, password: hashPassword });
+  const newUser = await User.create({
+    ...req.body,
+    password: hashPassword,
+    avatarURL,
+  });
 
   res.status(201).json({
     username: newUser.username,
     email: newUser.email,
+    avatarURL: newUser.avatarURL,
   });
 };
 
