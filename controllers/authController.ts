@@ -5,16 +5,18 @@ import jwt from 'jsonwebtoken';
 import path from 'path';
 import gravatar from 'gravatar';
 import fs from 'fs/promises';
+import { nanoid } from 'nanoid';
 
 import User from '../models/User';
 import HttpError from '../helpers/HttpError';
 import ctrlWrapper from '../decorators/ctrlWrapper';
+import sendEmail from '@/helpers/sendEmail';
 
 interface AuthRequest extends Request {
   user?: { _id: string; username?: string; email?: string };
 }
 
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET, BASE_URL } = process.env;
 
 const avatarPath = path.resolve('public', 'avatars');
 
@@ -41,12 +43,22 @@ const signup = async (req: Request, res: Response) => {
   }
 
   const hashPassword = await bcrypt.hash(password, 10);
+  const verificationCode = nanoid();
 
   const newUser = await User.create({
     ...req.body,
     password: hashPassword,
+    verificationCode,
     avatarURL,
   });
+
+  const verifyEmail = {
+    to: email,
+    subject: 'Verify email',
+    html: `<a target="_blank" href="${BASE_URL}/api/auth/verify/${verificationCode}">Click to verify your email</a>`,
+  };
+
+  await sendEmail(verifyEmail);
 
   res.status(201).json({
     username: newUser.username,
@@ -61,6 +73,11 @@ const signin = async (req: Request, res: Response) => {
   if (!user) {
     throw HttpError(401, 'Email or password is invalid');
   }
+
+  if (!user.verify) {
+    throw HttpError(401, 'Email not verified');
+  }
+
   const passwordCompare = await bcrypt.compare(password, user.password);
   if (!passwordCompare) {
     throw HttpError(401, 'Email or password is invalid');

@@ -25,6 +25,13 @@ const userSchema = new Schema(
     token: {
       type: String,
     },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationCode: {
+      type: String,
+    },
 
     // role: {
     //   type: String,
