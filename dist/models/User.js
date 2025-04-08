@@ -19,6 +19,17 @@ const userSchema = new mongoose_1.Schema({
         minLength: 6,
         required: true,
     },
+    avatarURL: { type: String },
+    token: {
+        type: String,
+    },
+    verify: {
+        type: Boolean,
+        default: false,
+    },
+    verificationCode: {
+        type: String,
+    },
     // role: {
     //   type: String,
     //   enum: ['user', 'admin'],

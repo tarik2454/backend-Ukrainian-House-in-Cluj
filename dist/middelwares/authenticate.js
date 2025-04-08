@@ -19,9 +19,10 @@ const authenticate = async (req, res, next) => {
     try {
         const { id } = jsonwebtoken_1.default.verify(token, JWT_SECRET);
         const user = await User_1.default.findById(id);
-        if (!user) {
+        if (!user || !user.token) {
             return next((0, HttpError_1.default)(401, 'Unauthorized: User not found'));
         }
+        req.user = user;
         next();
     }
     catch (error) {

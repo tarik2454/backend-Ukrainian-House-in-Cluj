@@ -14,7 +14,7 @@ const eventSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    img: { type: String },
+    poster: { type: String },
     description: {
         type: String,
         required: true,
