@@ -16,7 +16,7 @@ interface AuthRequest extends Request {
   user?: { _id: string; username?: string; email?: string };
 }
 
-const { JWT_SECRET, BASE_URL } = process.env;
+const { JWT_SECRET, BASE_URL_LOCAL } = process.env;
 
 const avatarPath = path.resolve('public', 'avatars');
 
@@ -55,7 +55,7 @@ const signup = async (req: Request, res: Response) => {
   const verifyEmail = {
     to: email,
     subject: 'Verify email',
-    html: `<a target="_blank" href="${BASE_URL}/api/auth/verify/${verificationCode}">Click to verify your email</a>`,
+    html: `<a target="_blank" href="${BASE_URL_LOCAL}/api/auth/verify/${verificationCode}">Click to verify your email</a>`,
   };
 
   await sendEmail(verifyEmail);
