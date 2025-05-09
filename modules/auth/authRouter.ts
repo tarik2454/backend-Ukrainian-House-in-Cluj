@@ -9,19 +9,19 @@ import { authenticate } from '@/middelwares/authenticate';
 const authRouter = express.Router();
 
 authRouter.post(
-     '/signup',
-     validateBody(userSignupSchema),
-     authController.signup
+  '/signup',
+  validateBody(userSignupSchema),
+  authController.signup
 );
 
 authRouter.post(
-     '/signin',
-     validateBody(userSigninSchema),
-     authController.signin
+  '/signin',
+  validateBody(userSigninSchema),
+  authController.signin
 );
 
 authRouter.get('/current', authenticate, authController.getCurrent);
 
 authRouter.post('/signout', authenticate, authController.signout);
 
-export default authRouter;
+export { authRouter };

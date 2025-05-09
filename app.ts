@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import 'dotenv/config';
 
-import authRouter from './modules/auth/authRouter';
+import { authRouter } from './modules/auth/authRouter';
 import { eventsRouter } from './modules/events/eventsRouter';
 import { newsRouter } from './modules/news/newsRouter';
 
