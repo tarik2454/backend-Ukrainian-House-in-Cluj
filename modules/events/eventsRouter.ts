@@ -1,20 +1,15 @@
 import express from 'express';
-
-import eventsController from '../controllers/eventsController';
-
-import validateBody from '../decorators/validateBody';
-
-import isValidId from '../middelwares/isValidId';
-import authenticate from '../middelwares/authenticate';
-import upload from '../middelwares/upload';
-
-import HttpError from '../helpers/HttpError';
-
+import eventsController from './eventsController';
+import { isValidId } from '@/middelwares/isValidId';
+import { authenticate } from '@/middelwares/authenticate';
+import { upload } from '@/middelwares/upload';
+import { HttpError } from '@/helpers/HttpError';
+import { validateBody } from '@/decorators/validateBody';
 import {
   createEventSchema,
   eventUpdateFavoriteSchema,
   updateEventSchema,
-} from '../schemas/eventSchemas';
+} from '@/schemas/eventSchemas';
 
 const eventsRouter = express.Router();
 
@@ -79,4 +74,4 @@ eventsRouter.patch(
 
 eventsRouter.delete('/:id', authenticate, eventsController.deleteById);
 
-export default eventsRouter;
+export { eventsRouter };

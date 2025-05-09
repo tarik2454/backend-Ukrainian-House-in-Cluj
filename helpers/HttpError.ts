@@ -6,7 +6,7 @@ interface HttpError extends Error {
   status: number;
 }
 
-const HttpError = (
+export const HttpError = (
   status: keyof MessageList,
   message = messageList[status]
 ): HttpError => {
@@ -23,4 +23,4 @@ const messageList: MessageList = {
   409: 'Conflict',
 };
 
-export default HttpError;
+

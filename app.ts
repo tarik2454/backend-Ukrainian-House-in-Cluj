@@ -3,9 +3,9 @@ import morgan from 'morgan';
 import cors from 'cors';
 import 'dotenv/config';
 
-import authRouter from './routes/authRouter';
-import eventsRouter from './routes/eventsRouter';
-import newsRouter from './routes/newsRouter';
+import authRouter from './modules/auth/authRouter';
+import { eventsRouter } from './modules/events/eventsRouter';
+import { newsRouter } from './modules/news/newsRouter';
 
 interface HttpError extends Error {
   status: number;

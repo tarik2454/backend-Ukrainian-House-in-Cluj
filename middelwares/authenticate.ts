@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
-import HttpError from '../helpers/HttpError';
+import {HttpError} from '../helpers/HttpError';
 
 import User from '../models/User';
 
@@ -18,7 +18,7 @@ if (!JWT_SECRET) {
   throw new Error('JWT_SECRET not set in environment variables!');
 }
 
-const authenticate = async (
+export const authenticate = async (
   req: AuthenticatedRequest,
   res: Response,
   next: NextFunction
@@ -46,4 +46,4 @@ const authenticate = async (
   }
 };
 
-export default authenticate;
+

@@ -1,16 +1,9 @@
 import express from 'express';
-
-import newsController from '../controllers/newsController';
-
-import validateBody from '../decorators/validateBody';
-
-import isValidId from '../middelwares/isValidId';
-import authenticate from '../middelwares/authenticate';
-
-import {
-  createNewsItemSchema,
-  updateNewsItemSchema,
-} from '../schemas/newsItemSchemas';
+import newsController from './newsController';
+import { isValidId } from '@/middelwares/isValidId';
+import { authenticate } from '@/middelwares/authenticate';
+import { validateBody } from '@/decorators/validateBody';
+import { createNewsItemSchema, updateNewsItemSchema } from '@/schemas/newsItemSchemas';
 
 const newsRouter = express.Router();
 
@@ -36,4 +29,4 @@ newsRouter.put(
 
 newsRouter.delete('/:id', authenticate, newsController.deleteById);
 
-export default newsRouter;
+export {newsRouter};

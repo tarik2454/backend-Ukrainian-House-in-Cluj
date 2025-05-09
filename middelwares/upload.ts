@@ -17,9 +17,9 @@ const limits = {
   fileSize: 1024 * 1024 * 5, // 5MB max file size
 };
 
-const upload = multer({
+export const upload = multer({
   storage,
   limits,
 });
 
-export default upload;
+
