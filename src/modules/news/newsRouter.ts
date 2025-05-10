@@ -1,13 +1,13 @@
 import express from 'express';
 
 import newsController from './newsController';
-import { isValidId } from '@/src/middelwares/isValidId';
-import { authenticate } from '@/src/middelwares/authenticate';
+import { isValidId } from '@/middelwares/isValidId';
+import { authenticate } from '@/middelwares/authenticate';
 import {
   createNewsItemSchema,
   updateNewsItemSchema,
-} from '@/src/schemas/newsItemSchemas';
-import { validateBody } from '@/src/decorators/validateBody';
+} from '@/schemas/newsItemSchemas';
+import { validateBody } from '@/decorators/validateBody';
 
 const newsRouter = express.Router();
 

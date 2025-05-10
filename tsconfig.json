@@ -8,19 +8,17 @@
     "target": "ES2019",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["*"]
     },
-
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "isolatedModules": true,
     "lib": ["ES2021"],
     "skipLibCheck": true,
     "strictNullChecks": true
-    // "strict": true
   },
-  "include": ["**/*.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

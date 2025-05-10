@@ -2,9 +2,9 @@ import { Request, Response } from 'express';
 import fs from 'fs/promises';
 
 import { Event } from '../../models/Event';
-import { HttpError } from '@/src/helpers/HttpError';
-import { cloudinary } from '@/src/helpers/cloudinary';
-import { ctrlWrapper } from '@/src/decorators/ctrlWrapper';
+import { HttpError } from '@/helpers/HttpError';
+import { cloudinary } from '@/helpers/cloudinary';
+import { ctrlWrapper } from '@/decorators/ctrlWrapper';
 
 interface RequestWithParams extends Request {
   params: {

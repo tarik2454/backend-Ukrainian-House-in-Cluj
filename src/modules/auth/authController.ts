@@ -6,10 +6,10 @@ import gravatar from 'gravatar';
 import fs from 'fs/promises';
 import { nanoid } from 'nanoid';
 
-import { User } from '@/src/models/User';
-import { HttpError } from '@/src/helpers/HttpError';
-import { sendEmail } from '@/src/helpers/sendEmail';
-import { ctrlWrapper } from '@/src/decorators/ctrlWrapper';
+import { User } from '@/models/User';
+import { HttpError } from '@/helpers/HttpError';
+import { sendEmail } from '@/helpers/sendEmail';
+import { ctrlWrapper } from '@/decorators/ctrlWrapper';
 
 interface AuthRequest extends Request {
   user?: { _id: string; username?: string; email?: string };

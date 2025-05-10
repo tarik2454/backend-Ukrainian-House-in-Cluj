@@ -1,15 +1,15 @@
 import express from 'express';
 import eventsController from './eventsController';
-import { isValidId } from '@/src/middelwares/isValidId';
-import { authenticate } from '@/src/middelwares/authenticate';
-import { upload } from '@/src/middelwares/upload';
-import { HttpError } from '@/src/helpers/HttpError';
-import { validateBody } from '@/src/decorators/validateBody';
+import { isValidId } from '@/middelwares/isValidId';
+import { authenticate } from '@/middelwares/authenticate';
+import { upload } from '@/middelwares/upload';
+import { HttpError } from '@/helpers/HttpError';
+import { validateBody } from '@/decorators/validateBody';
 import {
   createEventSchema,
   eventUpdateFavoriteSchema,
   updateEventSchema,
-} from '@/src/schemas/eventSchemas';
+} from '@/schemas/eventSchemas';
 
 const eventsRouter = express.Router();
 

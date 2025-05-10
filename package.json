@@ -2,12 +2,12 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "engines": {
     "node": "22.x"
   },
   "scripts": {
-    "start": "node -r tsconfig-paths/register ./dist/server.js",
+    "start": "node -r tsconfig-paths/register ./dist/index.js",
     "dev": "nodemon",
     "build": "tsc -p tsconfig.json",
     "lint": "eslint '**/*.{ts,tsx}'",
