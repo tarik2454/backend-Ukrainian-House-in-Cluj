@@ -1,0 +1,77 @@
+import express from 'express';
+import eventsController from './eventsController';
+import { isValidId } from '@/src/middelwares/isValidId';
+import { authenticate } from '@/src/middelwares/authenticate';
+import { upload } from '@/src/middelwares/upload';
+import { HttpError } from '@/src/helpers/HttpError';
+import { validateBody } from '@/src/decorators/validateBody';
+import {
+  createEventSchema,
+  eventUpdateFavoriteSchema,
+  updateEventSchema,
+} from '@/src/schemas/eventSchemas';
+
+const eventsRouter = express.Router();
+
+// eventsRouter.use(authenticate);
+
+eventsRouter.get('/', eventsController.getAll);
+
+eventsRouter.get('/:id', isValidId, eventsController.getById);
+
+eventsRouter.post(
+  '/',
+  authenticate,
+  upload.single('img'),
+  (req, res, next) => {
+    try {
+      // Если eventDate передан строкой — парсим
+      if (typeof req.body.eventDate === 'string') {
+        try {
+          req.body.eventDate = JSON.parse(req.body.eventDate);
+        } catch {
+          return next(HttpError(400, 'Invalid JSON format in eventDate'));
+        }
+      }
+
+      // Если tags передан строкой — парсим
+      if (typeof req.body.tags === 'string') {
+        try {
+          req.body.tags = JSON.parse(req.body.tags);
+          if (!Array.isArray(req.body.tags)) {
+            throw new Error();
+          }
+        } catch {
+          return next(
+            HttpError(400, 'Invalid JSON format in tags, must be an array')
+          );
+        }
+      }
+
+      next();
+    } catch (error) {
+      next(HttpError(400, error));
+    }
+  },
+  validateBody(createEventSchema),
+  eventsController.add
+);
+
+eventsRouter.put(
+  '/:id',
+  authenticate,
+  validateBody(updateEventSchema),
+  eventsController.updateById
+);
+
+eventsRouter.patch(
+  '/:id/favorite',
+  authenticate,
+  isValidId,
+  validateBody(eventUpdateFavoriteSchema),
+  eventsController.updateFavorite
+);
+
+eventsRouter.delete('/:id', authenticate, eventsController.deleteById);
+
+export { eventsRouter };
