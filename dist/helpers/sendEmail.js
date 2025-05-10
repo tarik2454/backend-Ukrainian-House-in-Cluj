@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendEmail = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const { UKR_NET_EMAIL, UKR_NET_PASSWORD } = process.env;
-console.log(UKR_NET_PASSWORD);
 if (!UKR_NET_EMAIL || !UKR_NET_PASSWORD) {
     throw new Error('Missing UKR_NET_EMAIL or UKR_NET_PASSWORD in environment variables.');
 }
