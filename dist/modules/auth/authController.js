@@ -91,10 +91,24 @@ const signout = async (req, res) => {
         message: 'Signout successful',
     });
 };
+const verifyEmail = async (req, res) => {
+    const { verificationCode } = req.params;
+    const user = await User_1.User.findOne({ verificationCode });
+    if (!user) {
+        throw (0, HttpError_1.HttpError)(404, 'Verification code not valid');
+    }
+    user.verify = true;
+    user.verificationCode = '';
+    await user.save();
+    res.status(200).json({
+        message: 'Email successfully verified!',
+    });
+};
 exports.default = {
     signup: (0, ctrlWrapper_1.ctrlWrapper)(signup),
     signin: (0, ctrlWrapper_1.ctrlWrapper)(signin),
     getCurrent: (0, ctrlWrapper_1.ctrlWrapper)(getCurrent),
     signout: (0, ctrlWrapper_1.ctrlWrapper)(signout),
+    verifyEmail: (0, ctrlWrapper_1.ctrlWrapper)(verifyEmail),
 };
 //# sourceMappingURL=authController.js.map

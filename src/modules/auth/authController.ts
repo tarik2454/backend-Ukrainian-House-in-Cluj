@@ -113,9 +113,27 @@ const signout = async (req: AuthRequest, res: Response) => {
   });
 };
 
+const verifyEmail = async (req: Request, res: Response) => {
+  const { verificationCode } = req.params;
+
+  const user = await User.findOne({ verificationCode });
+  if (!user) {
+    throw HttpError(404, 'Verification code not valid');
+  }
+
+  user.verify = true;
+  user.verificationCode = '';
+  await user.save();
+
+  res.status(200).json({
+    message: 'Email successfully verified!',
+  });
+};
+
 export default {
   signup: ctrlWrapper(signup),
   signin: ctrlWrapper(signin),
   getCurrent: ctrlWrapper(getCurrent),
   signout: ctrlWrapper(signout),
+  verifyEmail: ctrlWrapper(verifyEmail),
 };

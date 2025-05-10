@@ -15,4 +15,5 @@ authRouter.post('/signup', (0, validateBody_1.validateBody)(authSchemas_1.userSi
 authRouter.post('/signin', (0, validateBody_1.validateBody)(authSchemas_1.userSigninSchema), authController_1.default.signin);
 authRouter.get('/current', authenticate_1.authenticate, authController_1.default.getCurrent);
 authRouter.post('/signout', authenticate_1.authenticate, authController_1.default.signout);
+authRouter.get('/verify/:verificationCode', authController_1.default.verifyEmail);
 //# sourceMappingURL=authRouter.js.map

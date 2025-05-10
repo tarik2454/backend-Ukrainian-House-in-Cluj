@@ -8,6 +8,8 @@ interface EmailData {
 
 const { UKR_NET_EMAIL, UKR_NET_PASSWORD } = process.env;
 
+console.log(UKR_NET_PASSWORD);
+
 if (!UKR_NET_EMAIL || !UKR_NET_PASSWORD) {
   throw new Error(
     'Missing UKR_NET_EMAIL or UKR_NET_PASSWORD in environment variables.'
@@ -26,9 +28,9 @@ const nodemailerConfig = {
 
 const transport = nodemailer.createTransport(nodemailerConfig);
 
-export const sendEmail = (data: EmailData): Promise<nodemailer.SentMessageInfo> => {
+export const sendEmail = (
+  data: EmailData
+): Promise<nodemailer.SentMessageInfo> => {
   const email = { ...data, from: UKR_NET_EMAIL };
   return transport.sendMail(email);
 };
-
-

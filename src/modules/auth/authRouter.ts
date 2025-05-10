@@ -23,4 +23,6 @@ authRouter.get('/current', authenticate, authController.getCurrent);
 
 authRouter.post('/signout', authenticate, authController.signout);
 
+authRouter.get('/verify/:verificationCode', authController.verifyEmail);
+
 export { authRouter };
