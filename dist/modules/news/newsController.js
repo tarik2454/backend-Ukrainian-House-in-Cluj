@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const NewsItem_1 = require("../../models/NewsItem");
-const HttpError_1 = require("@/helpers/HttpError");
-const ctrlWrapper_1 = require("@/decorators/ctrlWrapper");
+const HttpError_1 = require("../../helpers/HttpError");
+const ctrlWrapper_1 = require("../../decorators/ctrlWrapper");
 const getAll = async (req, res) => {
     const result = await NewsItem_1.NewsItem.find({}, '-createdAt -updatedAt');
     res.json(result);

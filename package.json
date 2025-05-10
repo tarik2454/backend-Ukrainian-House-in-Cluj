@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "22.x"
+    "node": "23.x"
   },
   "scripts": {
     "start": "node -r tsconfig-paths/register ./dist/index.js",

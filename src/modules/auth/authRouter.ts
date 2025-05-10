@@ -1,9 +1,9 @@
 import express from 'express';
 
 import authController from './authController';
-import { validateBody } from '@/decorators/validateBody';
-import { userSigninSchema, userSignupSchema } from '@/schemas/authSchemas';
-import { authenticate } from '@/middelwares/authenticate';
+import { validateBody } from '../../decorators/validateBody';
+import { userSigninSchema, userSignupSchema } from '../..//schemas/authSchemas';
+import { authenticate } from '../..//middelwares/authenticate';
 
 const authRouter = express.Router();
 
