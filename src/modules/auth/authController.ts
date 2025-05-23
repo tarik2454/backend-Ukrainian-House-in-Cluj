@@ -17,7 +17,7 @@ interface AuthRequest extends Request {
 
 const { JWT_SECRET, BASE_URL_LOCAL } = process.env;
 
-const avatarPath = path.resolve('public', 'avatars');
+const avatarPath = path.resolve('tmp', 'avatars');
 
 if (!JWT_SECRET) {
   throw new Error('JWT_SECRET not set in environment variables!');
@@ -27,6 +27,11 @@ const signup = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   let avatarURL: string;
 
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    throw HttpError(409, 'Email already in use');
+  }
+
   if (req.file) {
     const { path: oldPath, filename } = req.file;
     const newPath = path.join(avatarPath, filename);
@@ -34,11 +39,6 @@ const signup = async (req: Request, res: Response) => {
     avatarURL = path.join('avatars', filename);
   } else {
     avatarURL = gravatar.url(email, { s: '250', d: 'retro' });
-  }
-
-  const existingUser = await User.findOne({ email });
-  if (existingUser) {
-    throw HttpError(409, 'Email already in use');
   }
 
   const hashPassword = await bcrypt.hash(password, 10);

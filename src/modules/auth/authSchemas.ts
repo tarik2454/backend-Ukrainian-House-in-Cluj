@@ -8,6 +8,7 @@ export const userSignupSchema = Joi.object({
     'any.required': `"email" must be exist`,
     'string.email': `"email" must be a valid email`,
   }),
+  avatarURL: Joi.string(),
   password: Joi.string().min(6).required().messages({
     'any.required': `"password" must be exist`,
     'string.base': `"password" must be string`,
