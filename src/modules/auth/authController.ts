@@ -17,7 +17,7 @@ interface AuthRequest extends Request {
 
 const { JWT_SECRET, BASE_URL_LOCAL } = process.env;
 
-const avatarPath = path.resolve('/temp', 'avatars');
+const avatarPath = path.resolve('/tmp', 'avatars');
 
 if (!JWT_SECRET) {
   throw new Error('JWT_SECRET not set in environment variables!');
