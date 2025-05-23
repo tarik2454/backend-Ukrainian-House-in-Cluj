@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NewsItem = void 0;
 const mongoose_1 = require("mongoose");
-const modelsHook_1 = require("@/hooks/modelsHook");
-const regex_1 = require("@/constants/regex");
+const regex_1 = require("../../constants/regex");
+const modelsHook_1 = require("../../hooks/modelsHook");
 const newsItemSchema = new mongoose_1.Schema({
     publicationDate: {
         type: String,

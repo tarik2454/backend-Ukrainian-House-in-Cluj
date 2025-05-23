@@ -8,10 +8,6 @@
     "target": "ES2019",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["*"]
-    },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "isolatedModules": true,
