@@ -35,6 +35,7 @@ const signup = async (req: Request, res: Response) => {
   if (req.file) {
     const { path: oldPath, filename } = req.file;
     const newPath = path.join(avatarPath, filename);
+    await fs.mkdir(avatarPath, { recursive: true });
     await fs.rename(oldPath, newPath);
     avatarURL = path.join('avatars', filename);
   } else {
