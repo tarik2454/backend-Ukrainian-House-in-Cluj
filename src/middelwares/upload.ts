@@ -2,7 +2,7 @@ import { Request } from 'express';
 import multer, { StorageEngine } from 'multer';
 import path from 'path';
 
-const destination: string = path.resolve('tmp');
+const destination: string = path.resolve('/tmp');
 
 const storage: StorageEngine = multer.diskStorage({
   destination,
