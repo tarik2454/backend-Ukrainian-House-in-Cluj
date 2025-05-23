@@ -32,10 +32,6 @@ const add = async (req, res) => {
         folder: 'backend-Ukrainian-House-in-Cluj/postersEvents',
     });
     await promises_1.default.unlink(req.file.path);
-    // const { path: oldPath, filename } = req.file;
-    // const newPath = path.join(postersEventsPath, filename);
-    // await fs.rename(oldPath, newPath);
-    // const poster = path.join('postersEvents', filename);
     const result = await Event_1.Event.create({ ...req.body, poster });
     res.status(201).json(result);
 };

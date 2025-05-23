@@ -14,13 +14,17 @@ const HttpError_1 = require("../../helpers/HttpError");
 const sendEmail_1 = require("../../helpers/sendEmail");
 const ctrlWrapper_1 = require("../../decorators/ctrlWrapper");
 const { JWT_SECRET, BASE_URL_LOCAL } = process.env;
-const avatarPath = path_1.default.resolve('public', 'avatars');
+const avatarPath = path_1.default.resolve('temp', 'avatars');
 if (!JWT_SECRET) {
     throw new Error('JWT_SECRET not set in environment variables!');
 }
 const signup = async (req, res) => {
     const { email, password } = req.body;
     let avatarURL;
+    const existingUser = await User_1.User.findOne({ email });
+    if (existingUser) {
+        throw (0, HttpError_1.HttpError)(409, 'Email already in use');
+    }
     if (req.file) {
         const { path: oldPath, filename } = req.file;
         const newPath = path_1.default.join(avatarPath, filename);
@@ -29,10 +33,6 @@ const signup = async (req, res) => {
     }
     else {
         avatarURL = gravatar_1.default.url(email, { s: '250', d: 'retro' });
-    }
-    const existingUser = await User_1.User.findOne({ email });
-    if (existingUser) {
-        throw (0, HttpError_1.HttpError)(409, 'Email already in use');
     }
     const hashPassword = await bcryptjs_1.default.hash(password, 10);
     const verificationCode = (0, nanoid_1.nanoid)();
