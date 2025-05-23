@@ -2,7 +2,7 @@ import { Request } from 'express';
 import multer, { StorageEngine } from 'multer';
 import path from 'path';
 
-const destination: string = path.resolve('temp');
+const destination: string = path.resolve('tmp');
 
 const storage: StorageEngine = multer.diskStorage({
   destination,
@@ -21,5 +21,3 @@ export const upload = multer({
   storage,
   limits,
 });
-
-

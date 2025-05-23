@@ -11,7 +11,7 @@ const authenticate_1 = require("../../middelwares/authenticate");
 const upload_1 = require("../../middelwares/upload");
 const HttpError_1 = require("../../helpers/HttpError");
 const validateBody_1 = require("../../decorators/validateBody");
-const eventSchemas_1 = require("../../schemas/eventSchemas");
+const eventSchemas_1 = require("./eventSchemas");
 const eventsRouter = express_1.default.Router();
 exports.eventsRouter = eventsRouter;
 // eventsRouter.use(authenticate);

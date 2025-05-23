@@ -9,10 +9,10 @@ const path_1 = __importDefault(require("path"));
 const gravatar_1 = __importDefault(require("gravatar"));
 const promises_1 = __importDefault(require("fs/promises"));
 const nanoid_1 = require("nanoid");
-const User_1 = require("../../models/User");
+const User_1 = require("./User");
 const HttpError_1 = require("../../helpers/HttpError");
-const sendEmail_1 = require("../..//helpers/sendEmail");
-const ctrlWrapper_1 = require("../..//decorators/ctrlWrapper");
+const sendEmail_1 = require("../../helpers/sendEmail");
+const ctrlWrapper_1 = require("../../decorators/ctrlWrapper");
 const { JWT_SECRET, BASE_URL_LOCAL } = process.env;
 const avatarPath = path_1.default.resolve('public', 'avatars');
 if (!JWT_SECRET) {

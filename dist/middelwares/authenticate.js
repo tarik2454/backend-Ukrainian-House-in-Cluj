@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.authenticate = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const HttpError_1 = require("../helpers/HttpError");
-const User_1 = require("../models/User");
+const User_1 = require("../modules/auth/User");
 const { JWT_SECRET } = process.env;
 if (!JWT_SECRET) {
     throw new Error('JWT_SECRET not set in environment variables!');

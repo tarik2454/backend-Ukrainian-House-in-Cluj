@@ -13,4 +13,4 @@ const preUpdate = function (next) {
     next();
 };
 exports.preUpdate = preUpdate;
-//# sourceMappingURL=hooks.js.map
+//# sourceMappingURL=modelsHook.js.map

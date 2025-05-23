@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Event = void 0;
 const mongoose_1 = require("mongoose");
-const hooks_1 = require("./hooks");
-const tags_1 = require("../constants/tags");
-const regex_1 = require("../constants/regex");
+const modelsHook_1 = require("../../hooks/modelsHook");
+const tags_1 = require("../../constants/tags");
+const regex_1 = require("../../constants/regex");
 const eventSchema = new mongoose_1.Schema({
     publicationDate: {
         type: String,
@@ -49,9 +49,9 @@ eventSchema.set('toJSON', {
         return ret;
     },
 });
-eventSchema.post('save', hooks_1.handleSaveError);
-eventSchema.pre('findOneAndUpdate', hooks_1.preUpdate);
-eventSchema.post('findOneAndUpdate', hooks_1.handleSaveError);
+eventSchema.post('save', modelsHook_1.handleSaveError);
+eventSchema.pre('findOneAndUpdate', modelsHook_1.preUpdate);
+eventSchema.post('findOneAndUpdate', modelsHook_1.handleSaveError);
 const Event = (0, mongoose_1.model)('event', eventSchema);
 exports.Event = Event;
 //# sourceMappingURL=Event.js.map

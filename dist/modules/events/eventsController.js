@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const promises_1 = __importDefault(require("fs/promises"));
-const Event_1 = require("../../models/Event");
-const HttpError_1 = require("../..//helpers/HttpError");
+const Event_1 = require("./Event");
+const HttpError_1 = require("../../helpers/HttpError");
 const cloudinary_1 = require("../../helpers/cloudinary");
 const ctrlWrapper_1 = require("../../decorators/ctrlWrapper");
 // const postersEventsPath = path.resolve('public', 'postersEvents');
