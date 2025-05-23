@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { handleSaveError, preUpdate } from '../../hooks/modelsHooks';
+import { handleSaveError, preUpdate } from '../../hooks/modelsHook';
 import { tags } from '../../constants/tags';
 import { publicationDateRegex } from '../../constants/regex';
 
