@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
-import { NewsItem } from '../../models/NewsItem';
 import { HttpError } from '../../helpers/HttpError';
 import { ctrlWrapper } from '../../decorators/ctrlWrapper';
+import { NewsItem } from './NewsItem';
 
 interface RequestWithParams extends Request {
   params: {

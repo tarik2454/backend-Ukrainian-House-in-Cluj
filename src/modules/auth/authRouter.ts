@@ -2,7 +2,7 @@ import express from 'express';
 
 import authController from './authController';
 import { validateBody } from '../../decorators/validateBody';
-import { userSigninSchema, userSignupSchema } from '../../schemas/authSchemas';
+import { userSigninSchema, userSignupSchema } from './authSchemas';
 import { authenticate } from '../../middelwares/authenticate';
 
 const authRouter = express.Router();

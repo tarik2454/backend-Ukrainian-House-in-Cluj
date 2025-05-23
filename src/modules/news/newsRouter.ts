@@ -3,10 +3,7 @@ import express from 'express';
 import newsController from './newsController';
 import { isValidId } from '../../middelwares/isValidId';
 import { authenticate } from '../../middelwares/authenticate';
-import {
-  createNewsItemSchema,
-  updateNewsItemSchema,
-} from '../../schemas/newsItemSchemas';
+import { createNewsItemSchema, updateNewsItemSchema } from './newsItemSchemas';
 import { validateBody } from '../../decorators/validateBody';
 
 const newsRouter = express.Router();

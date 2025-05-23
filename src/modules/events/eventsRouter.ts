@@ -9,7 +9,7 @@ import {
   createEventSchema,
   eventUpdateFavoriteSchema,
   updateEventSchema,
-} from '../../schemas/eventSchemas';
+} from './eventSchemas';
 
 const eventsRouter = express.Router();
 

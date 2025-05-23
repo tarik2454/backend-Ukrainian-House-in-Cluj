@@ -6,7 +6,7 @@ import gravatar from 'gravatar';
 import fs from 'fs/promises';
 import { nanoid } from 'nanoid';
 
-import { User } from '../../models/User';
+import { User } from './User';
 import { HttpError } from '../../helpers/HttpError';
 import { sendEmail } from '../../helpers/sendEmail';
 import { ctrlWrapper } from '../../decorators/ctrlWrapper';

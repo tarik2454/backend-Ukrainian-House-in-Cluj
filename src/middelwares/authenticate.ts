@@ -4,7 +4,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import { UserType } from '../types/user';
 
 import { HttpError } from '../helpers/HttpError';
-import { User } from '../models/User';
+import { User } from '../modules/auth/User';
 
 interface AuthenticatedRequest extends Request {
   user?: UserType;

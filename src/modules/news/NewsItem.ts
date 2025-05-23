@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 
-import { handleSaveError, preUpdate } from './hooks';
-import { publicationDateRegex } from '../constants/regex';
+import { handleSaveError, preUpdate } from '@/hooks/modelsHooks';
+import { publicationDateRegex } from '@/constants/regex';
 
 const newsItemSchema = new Schema(
   {
