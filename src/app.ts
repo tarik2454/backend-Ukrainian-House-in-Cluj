@@ -1,14 +1,13 @@
 import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import 'dotenv/config';
 
 import { authRouter } from './modules/auth/authRouter';
 import { eventsRouter } from './modules/events/eventsRouter';
 import { newsRouter } from './modules/news/newsRouter';
 
 interface HttpError extends Error {
-  status: number;
+  status?: number;
 }
 
 const app = express();

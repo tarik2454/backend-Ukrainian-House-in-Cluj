@@ -14,7 +14,7 @@ const HttpError_1 = require("../../helpers/HttpError");
 const sendEmail_1 = require("../../helpers/sendEmail");
 const ctrlWrapper_1 = require("../../decorators/ctrlWrapper");
 const { JWT_SECRET, BASE_URL_LOCAL } = process.env;
-const avatarPath = path_1.default.resolve('/tmp', 'avatars');
+const avatarPath = path_1.default.resolve('tmp', 'avatars');
 if (!JWT_SECRET) {
     throw new Error('JWT_SECRET not set in environment variables!');
 }

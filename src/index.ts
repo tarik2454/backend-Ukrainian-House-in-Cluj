@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import 'dotenv/config';
 
 import app from './app';
 
@@ -12,7 +13,7 @@ mongoose
   .connect(dbHost)
   .then(() => {
     app.listen(process.env.PORT, () => {
-      console.log('Server is running. Use our API on port: 3001');
+      console.log('Server is  running. Use our API on port: 3001');
     });
   })
   .catch(err => {
